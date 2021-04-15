@@ -1,4 +1,7 @@
-/* โค้ด.gs */
+/* โค้ด.gs 
+เครดิตและอ่านรายละเอียด : https://github.com/jamiewilson/form-to-google-sheets
+เครดิตต้นฉบับ original from: http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
+*/
 Paste this script into the 'Code.gs' tab in the Script Editor
 For a detailed explanation of this file, view 'form-script-commented.js'
 */

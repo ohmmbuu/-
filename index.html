@@ -14,9 +14,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Itim|Kanit|Mali|Mitr|Niramit|Pattaya|Prompt|Questrial|Sarabun|Sriracha' rel='stylesheet' type='text/css'>
 
 	<title>ระบบรับสมัครนักเรียน | โรงเรียนวัดไร่ขิงวิทยา</title>
-<!-- jquery.Thailand.js **********************************************************************************   
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.20/css/uikit.css"> -->  
+<!-- jquery.Thailand.js **********************************************************************************   -->
     <link rel="stylesheet" href="./jquery.Thailand.js/dist/jquery.Thailand.min.css">
 <!--*******************************************************************************************************-->
 <style type='text/css'>
@@ -132,7 +130,7 @@ body { font-family: 'Prompt' !important; }
 <!-- Content -->
 <section><br>
   <div class="container">
-     <!-- <center><h1>[ 24 - 28 เมษายน 2564 ]</h1><br></center> -->
+   <!--  <center><h1>[ 24 - 28 เมษายน 2564 ]</h1><br></center>-->
 	  <div class="card text-black bg-warning mb-12" style="max-width: 100rem;">
 		  <h2 class="card-header prompt">ประเภททั่วไป 24 - 28 เม.ย. 64, ความสามารถพิเศษ 24 - 27 เม.ย. 64</h2>
 		  <div class="card-body">
@@ -308,7 +306,7 @@ body { font-family: 'Prompt' !important; }
     </div>
 
     <div class="col-md-3">
-      <label for="disability" class="form-label"><i class="fas fa-wheelchair mr-3"></i> ความพิการ</lable>
+      <p><i class="fas fa-wheelchair mr-3"></i> ความพิการ</p>
       <select class="form-select" name="disability" id="disability" required><br>
         <option selected disabled value="">เลือก...</option>
         <option>ไม่พิการ</option>
@@ -323,7 +321,7 @@ body { font-family: 'Prompt' !important; }
         <option>บุคคลพิการซ้อน</option>
       </select>
     </div>
-</div><!-- ปิด Row -->
+</div><!-- ปิด Row --> 
 <form class="row g-3 needs-validation" novalidate>
   <!-- บิดา -->
   <div class="col-md-6">
@@ -368,8 +366,7 @@ body { font-family: 'Prompt' !important; }
     <label for="relationship" class="form-label"><i class="fas fa-user-plus mr-3"></i> ความเกี่ยวข้องกับนักเรียน</label>
     <input type="text" class="form-control" name="relationship" id="relationship" required>
   </div>
-</div><!-- ปิด Row -->
-<br>
+</div><!-- ปิด Row --><br>
 <!-- บันทึกข้อมูล -->  
   <div class="col-12">
     <center><button class="btn btn-success btn-lg" type="submit" >บันทึกข้อมูล</button></center><br>
@@ -416,11 +413,11 @@ body { font-family: 'Prompt' !important; }
     
     <script type="text/javascript">
         /******************\
-         *     DEMO 1     (สำหรับข้อมูลที่อยู่นักเรียน) *
+         *     DEMO 1     *
         \******************/ 
         // demo 1: load database from json. if your server is support gzip. we recommended to use this rather than zip.
         // for more info check README.md
-
+/* ที่อยู่นักเรียน */
         $.Thailand({
             database: './jquery.Thailand.js/database/db.json', 
 
@@ -457,9 +454,9 @@ body { font-family: 'Prompt' !important; }
 
 <script type="text/javascript">
         /******************\
-         *     DEMO 1.1   (สำหรับข้อมูลที่อยู่โรงเรียน) *
+         *     DEMO 1.1     *
         \******************/ 
-
+/* ที่อยู่โรงเรียนเดิม */
         $.Thailand({
             database: './jquery.Thailand.js/database/db.json', 
 
@@ -494,16 +491,32 @@ body { font-family: 'Prompt' !important; }
         });
     </script>
 
+
+<!-- อัพโหลดไฟล์ -->
+<script>
+      document.getElementById('submitBtn').addEventListener('click',
+        function(e){
+          google.script.run.withSuccessHandler(onSuccess).uploadFiles(this.parentNode)
+        })
+        
+        function onSuccess(data){
+          document.getElementById('resp').innerHTML = "File Uploaded to the path " +data;
+        }
+       
+</script>
+
+
+
 <!--  บันทึกข้อมูลไปยัง Google Sheet -->
  <script>
-            const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec' //** URL เว็บแอพ
-            const form = document.forms['demo1']
+    const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxx/exec'  //** URL เว็บแอพ
+    const form = document.forms['demo1']
           
-            form.addEventListener('submit', e => {
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                //.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
-                .then(response =>
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    //.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
+      .then(response =>
     // SweetAlert แจ้งเตือนหลังส่งข้อมูลแล้ว ปิดอัตโนมัติ
         Swal.fire({
         position: 'center',

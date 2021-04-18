@@ -14,7 +14,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Itim|Kanit|Mali|Mitr|Niramit|Pattaya|Prompt|Questrial|Sarabun|Sriracha' rel='stylesheet' type='text/css'>
 
 	<title>ระบบรับสมัครนักเรียน | โรงเรียนวัดไร่ขิงวิทยา</title>
-<!-- jquery.Thailand.js **********************************************************************************   -->
+<!-- jquery.Thailand.js ***********************************************************************************-->   
     <link rel="stylesheet" href="./jquery.Thailand.js/dist/jquery.Thailand.min.css">
 <!--*******************************************************************************************************-->
 <style type='text/css'>
@@ -36,7 +36,7 @@
 @font-face {
   font-family: 'Sarabun';
 }
-body { font-family: 'Prompt' !important; }
+body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต์ในแท็ก Body ที่นี่ (รูปแบบตัวหนังสือในหน้าเว็บ * ยกเว้นที่ระบุใน class) */
 
 ::placeholder {
   color: peachpuff;
@@ -130,7 +130,7 @@ body { font-family: 'Prompt' !important; }
 <!-- Content -->
 <section><br>
   <div class="container">
-   <!--  <center><h1>[ 24 - 28 เมษายน 2564 ]</h1><br></center>-->
+     <!-- <center><h1>[ 24 - 28 เมษายน 2564 ]</h1><br></center> -->
 	  <div class="card text-black bg-warning mb-12" style="max-width: 100rem;">
 		  <h2 class="card-header prompt">ประเภททั่วไป 24 - 28 เม.ย. 64, ความสามารถพิเศษ 24 - 27 เม.ย. 64</h2>
 		  <div class="card-body">
@@ -158,7 +158,7 @@ body { font-family: 'Prompt' !important; }
       </div>
     </div>
 
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-4">
       <p><i class="fas fa-address-card mr-3"></i> สมัครประเภท</p>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="reg_type" id="type1" value="ทั่วไป" checked>
@@ -256,7 +256,7 @@ body { font-family: 'Prompt' !important; }
   </div>
   <div class="col">
     <label for="student_phone" class="form-label">โทรศัพท์มือถือนักเรียน</label>
-    <input type="tel" class="form-control" name="student_phone" id="student_phone" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required><br>
+    <input type="tel" class="form-control" name="student_phone" id="student_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required><br>
   </div>
 </div><!-- ปิด Row -->
 <!-- การศึกษา -->
@@ -302,7 +302,7 @@ body { font-family: 'Prompt' !important; }
     </div>
 
     <div class="col-md-3">
-      <p><i class="fas fa-wheelchair mr-3"></i> ความพิการ</p>
+      <label for="disability" class="form-label"><i class="fas fa-wheelchair mr-3"></i> ความพิการ</lable>
       <select class="form-select" name="disability" id="disability" required><br>
         <option selected disabled value="">เลือก...</option>
         <option>ไม่พิการ</option>
@@ -317,7 +317,7 @@ body { font-family: 'Prompt' !important; }
         <option>บุคคลพิการซ้อน</option>
       </select>
     </div>
-</div><!-- ปิด Row --> 
+</div><!-- ปิด Row -->
 <form class="row g-3 needs-validation" novalidate>
   <!-- บิดา -->
   <div class="col-md-6">
@@ -362,7 +362,8 @@ body { font-family: 'Prompt' !important; }
     <label for="relationship" class="form-label"><i class="fas fa-user-plus mr-3"></i> ความเกี่ยวข้องกับนักเรียน</label>
     <input type="text" class="form-control" name="relationship" id="relationship" required>
   </div>
-</div><!-- ปิด Row --><br>
+</div><!-- ปิด Row -->
+<br>
 <!-- บันทึกข้อมูล -->  
   <div class="col-12">
     <center><button class="btn btn-success btn-lg" type="submit" >บันทึกข้อมูล</button></center><br>
@@ -413,7 +414,7 @@ body { font-family: 'Prompt' !important; }
         \******************/ 
         // demo 1: load database from json. if your server is support gzip. we recommended to use this rather than zip.
         // for more info check README.md
-/* ที่อยู่นักเรียน */
+
         $.Thailand({
             database: './jquery.Thailand.js/database/db.json', 
 
@@ -452,7 +453,7 @@ body { font-family: 'Prompt' !important; }
         /******************\
          *     DEMO 1.1     *
         \******************/ 
-/* ที่อยู่โรงเรียนเดิม */
+
         $.Thailand({
             database: './jquery.Thailand.js/database/db.json', 
 
@@ -487,32 +488,16 @@ body { font-family: 'Prompt' !important; }
         });
     </script>
 
-
-<!-- อัพโหลดไฟล์ -->
-<script>
-      document.getElementById('submitBtn').addEventListener('click',
-        function(e){
-          google.script.run.withSuccessHandler(onSuccess).uploadFiles(this.parentNode)
-        })
-        
-        function onSuccess(data){
-          document.getElementById('resp').innerHTML = "File Uploaded to the path " +data;
-        }
-       
-</script>
-
-
-
 <!--  บันทึกข้อมูลไปยัง Google Sheet -->
  <script>
-    const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxx/exec'  //** URL เว็บแอพ
+    const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxx/exec' //** URL เว็บแอพ
     const form = document.forms['demo1']
-          
+
     form.addEventListener('submit', e => {
       e.preventDefault()
       fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-    //.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
-      .then(response =>
+	//.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
+	.then(response =>
     // SweetAlert แจ้งเตือนหลังส่งข้อมูลแล้ว ปิดอัตโนมัติ
         Swal.fire({
         position: 'center',
@@ -550,21 +535,23 @@ body { font-family: 'Prompt' !important; }
 });
 
 function Script_checkID(id){
-    if(! IsNumeric(id)) return false;
-    if(id.substring(0,1)== 0) return false;
+    //if(! IsNumeric(id)) return false;
+    //if(id.substring(0,1)== 0) return false;
     if(id.length != 13) return false;
     for(i=0, sum=0; i < 12; i++)
         sum += parseFloat(id.charAt(i))*(13-i);
     if((11-sum%11)%10!=parseFloat(id.charAt(12))) return false;
     return true;
 }
+/* 
 function IsNumeric(input){
     var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
     return (RE.test(input));
 }
+*/
 </script>
 
-<!-- Back to Top Button -->
+<!-- ปุ่มกลับด้านบน -->
 <script>
     var btn = $('#button');
 

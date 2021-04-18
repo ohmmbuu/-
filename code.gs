@@ -53,7 +53,7 @@ function doPost (e) {
 //==================ส่วนสำหรับสร้างสำเนาไฟล์ต้นฉบับ=======================
   //var Slide_TempFile_Copy = DriveApp.getFileById(SlideFile).makeCopy(tempFolder);
     var Slide_TempFile_Copy = DriveApp.getFileById(SlideFile);              
-    var Slide_File_CopyStud = Slide_TempFile_Copy.makeCopy('สมัครเรียนออนไลน์ '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
+    var Slide_File_CopyStud = Slide_TempFile_Copy.makeCopy('สมัครเรียน ม.1 '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
     var SlideCopyId = Slide_File_CopyStud.getId();
     var SlideNewCopy = SlidesApp.openById(SlideCopyId);
     var slides = SlideNewCopy.getSlides();
@@ -72,43 +72,43 @@ function doPost (e) {
     //var MonthId = strMonthFull[strBHDMonth];    
  
     shapes.forEach(function (shape) {
-      shape.getText().replaceAllText('{prefix}',newRow[3]);
-      shape.getText().replaceAllText('{namestud}', newRow[4]);    
-      shape.getText().replaceAllText('{surname}', newRow[5]);    
-      shape.getText().replaceAllText('{numid}', newRow[7]);
-      shape.getText().replaceAllText('{bdy}', newRow[6]); 
-      //shape.getText().replaceAllText('{mdy}',MonthId);
-      //shape.getText().replaceAllText('{ydy}',  strBHDYear);     
-      shape.getText().replaceAllText('{religion}',newRow[10]);
-      shape.getText().replaceAllText('{race}', newRow[8]);
-      shape.getText().replaceAllText('{nation}',newRow[9]);
-      shape.getText().replaceAllText('{homeid}', newRow[11]);     
-      shape.getText().replaceAllText('{mhoo}', newRow[12]); 
-      shape.getText().replaceAllText('{tambon}', newRow[16]); 
-      shape.getText().replaceAllText('{amphur}',newRow[17]);  
-      shape.getText().replaceAllText('{jangwat}', newRow[18]); 
-      shape.getText().replaceAllText('{zipcodestud}',newRow[19]);
-      shape.getText().replaceAllText('{telstud}',newRow[20]);
-      shape.getText().replaceAllText('{fatname}', newRow[28]);
-      //shape.getText().replaceAllText('{farsur}', ID_farsur);      
-      shape.getText().replaceAllText('{faroccup}',newRow[29]);      
-      shape.getText().replaceAllText('{fartel}', newRow[30]);      
-      shape.getText().replaceAllText('{momname}', newRow[31]); 
-      //shape.getText().replaceAllText('{momsur}',  ID_momsur); 
-      shape.getText().replaceAllText('{momoccp}', newRow[32]);      
-      shape.getText().replaceAllText('{momtel}', newRow[33]); 
-      shape.getText().replaceAllText('{parent}', newRow[34]); 
-      shape.getText().replaceAllText('{relation}', newRow[37]); 
-      shape.getText().replaceAllText('{parentname}', newRow[34]); 
-      shape.getText().replaceAllText('{prarentoccup}', newRow[35]); 
-      shape.getText().replaceAllText('{parenttel}', newRow[36]); 
-      shape.getText().replaceAllText('{schoolend}',newRow[21]);      
-      shape.getText().replaceAllText('{schtambon}', newRow[22]); 
-      shape.getText().replaceAllText('{schamper}', newRow[23]); 
-      shape.getText().replaceAllText('{schjangwat}', newRow[24]); 
-      //shape.getText().replaceAllText('{Affiliatoin}',ID_Affiliatoin); 
-      shape.getText().replaceAllText('{ONET}', newRow[25]); 
-      shape.getText().replaceAllText('{typein}', newRow[1]);           
+    shape.getText().replaceAllText('{service}',newRow[1]);
+    shape.getText().replaceAllText('{reg_type}',newRow[2]);
+    shape.getText().replaceAllText('{prefix}',newRow[3]);
+    shape.getText().replaceAllText('{name}',newRow[4]);
+    shape.getText().replaceAllText('{lastname}',newRow[5]);
+    shape.getText().replaceAllText('{birthday}',newRow[6]);
+    shape.getText().replaceAllText('{idcard}',newRow[7]);
+    shape.getText().replaceAllText('{race}',newRow[8]);
+    shape.getText().replaceAllText('{nationality}',newRow[9]);
+    shape.getText().replaceAllText('{religion}',newRow[10]);
+    shape.getText().replaceAllText('{house_no}',newRow[11]);
+    shape.getText().replaceAllText('{village_no}',newRow[12]);
+    shape.getText().replaceAllText('{village}',newRow[13]);
+    shape.getText().replaceAllText('{road}',newRow[14]);
+    shape.getText().replaceAllText('{alley}',newRow[15]);
+    shape.getText().replaceAllText('{district}',newRow[16]);
+    shape.getText().replaceAllText('{amphoe}',newRow[17]);
+    shape.getText().replaceAllText('{province}',newRow[18]);
+    shape.getText().replaceAllText('{zipcode}',newRow[19]);
+    shape.getText().replaceAllText('{student_phone}',newRow[20]);
+    shape.getText().replaceAllText('{school}',newRow[21]);
+    shape.getText().replaceAllText('{district1}',newRow[22]);
+    shape.getText().replaceAllText('{amphoe1}',newRow[23]);
+    shape.getText().replaceAllText('{province1}',newRow[24]);
+    shape.getText().replaceAllText('{gpa}',newRow[25]);
+    shape.getText().replaceAllText('{school_type}',newRow[26]);
+    shape.getText().replaceAllText('{disability}',newRow[27]);
+    shape.getText().replaceAllText('{father}',newRow[28]);
+    shape.getText().replaceAllText('{father_occupation}',newRow[29]);
+    shape.getText().replaceAllText('{father_phone}',newRow[30]);
+    shape.getText().replaceAllText('{mother}',newRow[31]);
+    shape.getText().replaceAllText('{mother_occupation}',newRow[32]);
+    shape.getText().replaceAllText('{mother_phone}',newRow[33]);
+    shape.getText().replaceAllText('{parent}',newRow[34]);
+    shape.getText().replaceAllText('{parent_occupation}',newRow[35]);
+    shape.getText().replaceAllText('{parent_phone}',newRow[36]);
+    shape.getText().replaceAllText('{relationship}',newRow[37]);
     });
     
     var text_data = '📣 นักเรียนสมัครเรียนออนไลน์ ระดับชั้น ม.1\n';
@@ -128,7 +128,7 @@ function doPost (e) {
     //tempFolder.removeFile(Slide_TempFile_Copy);
     
     //======================ส่วนการส่งอีเมล์=========================
-    var email = "niddeaw.n@gmail.com"; //ส่งเมลไปที่เจาหน้าที่
+    var email = "xxx@gmail.com"; //ส่งเมลไปที่เจ้าหน้าที่
     MailApp.sendEmail(email, "สมัครเรียนออนไลน์", "จาก โรงเรียนวัดไร่ขิงวิทยา ท่านได้ทำการลงทะเบียนเรียนด้วยระบบออนไลน์ กรุณาตรวจสอบข้อมูล", {attachments: [newPDFFile],});
     
     //=====================ลบไฟล์สำเนาออก=========================
@@ -136,7 +136,7 @@ function doPost (e) {
     // newPDFFile.setTrashed(true); // ไฟล์ PDF หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
     // Slide_File_CopyStud.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับที่ถูกแทนที่ด้วยข้อความใหม่ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
 /* ----------------------------------------------------------------------------------------------------------------------------------------*/
-
+ 
     return ContentService
       .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
       .setMimeType(ContentService.MimeType.JSON)

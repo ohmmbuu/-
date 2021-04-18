@@ -1,6 +1,7 @@
 /* โค้ด.gs 
 เครดิตและอ่านรายละเอียด : https://github.com/jamiewilson/form-to-google-sheets
 เครดิตต้นฉบับ original from: http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
+อัพเดทโค้ด 18 เมษายน 2564 เพิ่มระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม
 */
 
 var sheetName = 'Sheet1'

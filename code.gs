@@ -1,5 +1,5 @@
 /* โค้ด.gs 
-ระบบรับสมัครนักเรียน พัฒนาโดย นายจิรศักดิ์ จิรสาโรช E-mail: niddeaw.n@gmail.com Tel. & Line : 0806393969
+ระบบรับสมัครนักเรียน พัฒนาโดย นายจิรศักดิ์ จิรสาโรช E-mail: niddeaw.n@gmail.com Tel : 0806393969
 เครดิตและอ่านรายละเอียด : https://github.com/jamiewilson/form-to-google-sheets
 เครดิตต้นฉบับ original from: http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
 
@@ -43,8 +43,17 @@ function doPost (e) {
     const pdfFolder = DriveApp.getFolderById("ID_โฟลเดอร์_PDF"); // ID โฟลเดอร์ PDF
             
 // ส่วนสำหรับสร้างสำเนาไฟล์ต้นฉบับ -----------------------------------------------------------------------------------------------------------
+    var strYear = parseInt(Utilities.formatDate(new Date(), "Asia/Bangkok", "yyyy")) + 543;
+    var strMonth = Utilities.formatDate(new Date(), "Asia/Bangkok", "M");
+    var strDay = Utilities.formatDate(new Date(), "Asia/Bangkok", "d");
+    var strhour=Utilities.formatDate(new Date(), "Asia/Bangkok", "HH");
+    var strMinute=Utilities.formatDate(new Date(), "Asia/Bangkok", "mm");
+    var strMonthCut = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
+    var strMonthThai = strMonthCut[strMonth];  
+    var DatetimeFile=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+'.'+strMinute;
+
     var Slide_TempFile_Copy = DriveApp.getFileById(SlideFile);              
-    var Slide_File_CopyStud = Slide_TempFile_Copy.makeCopy('สมัครเรียน ม.1 '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
+    var Slide_File_CopyStud = Slide_TempFile_Copy.makeCopy('ม.1 '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
     var SlideCopyId = Slide_File_CopyStud.getId();
     var SlideNewCopy = SlidesApp.openById(SlideCopyId);
     var slides = SlideNewCopy.getSlides();
@@ -92,14 +101,7 @@ function doPost (e) {
     shape.getText().replaceAllText('{parent_phone}',newRow[37]);
     shape.getText().replaceAllText('{relationship}',newRow[38]);
 });
-    var strYear = parseInt(Utilities.formatDate(new Date(), "Asia/Bangkok", "yyyy")) + 543;
-    var strMonth = Utilities.formatDate(new Date(), "Asia/Bangkok", "M");
-    var strDay = Utilities.formatDate(new Date(), "Asia/Bangkok", "d");
-    var strhour=Utilities.formatDate(new Date(), "Asia/Bangkok", "HH");
-    var strMinute=Utilities.formatDate(new Date(), "Asia/Bangkok", "mm");
-    var strMonthCut = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
-    var strMonthThai = strMonthCut[strMonth];  
-    var DatetimeFile=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+'.'+strMinute;
+
     var pdfName ="ม.1 " + newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile
     SlideNewCopy.saveAndClose();
     

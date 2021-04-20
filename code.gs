@@ -46,9 +46,9 @@ function doPost (e) {
     var DatetimeFile=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+'.'+strMinute;
     
     
-    var SlideFile = "ID สไลด์ไฟล์แม่แบบ"; // ID สไลด์ไฟล์แม่แบบ
-    const tempFolder = DriveApp.getFolderById("ID โฟลเดอร์ temp"); // ID โฟลเดอร์ temp
-    const pdfFolder = DriveApp.getFolderById("ID โฟลเดอร์ PDF"); // ID โฟลเดอร์ PDF
+    var SlideFile = "ID_สไลด์ไฟล์แม่แบบ"; // ID สไลด์ไฟล์แม่แบบ
+    const tempFolder = DriveApp.getFolderById("ID_โฟลเดอร์_temp"); // ID โฟลเดอร์ temp
+    const pdfFolder = DriveApp.getFolderById("ID_โฟลเดอร์_PDF"); // ID โฟลเดอร์ PDF
             
             
 //==================ส่วนสำหรับสร้างสำเนาไฟล์ต้นฉบับ=======================
@@ -159,7 +159,7 @@ function doPost (e) {
 //==============ส่วนฟังก์ชั่นแจ้งเตือนไลน์====================
 function sendLineNotify(message) {
 
-    var token = ["กรอก Token ID"]; //ใส่ access token
+    var token = ["กรอก_Token_ID"]; //ใส่ access token
     var options = {
         "method": "post",
         "payload": "message=" + message,

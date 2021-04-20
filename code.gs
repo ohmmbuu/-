@@ -97,19 +97,21 @@ function doPost (e) {
     shape.getText().replaceAllText('{district1}',newRow[22]);
     shape.getText().replaceAllText('{amphoe1}',newRow[23]);
     shape.getText().replaceAllText('{province1}',newRow[24]);
-    shape.getText().replaceAllText('{gpa}',newRow[25]);
-    shape.getText().replaceAllText('{school_type}',newRow[26]);
-    shape.getText().replaceAllText('{disability}',newRow[27]);
-    shape.getText().replaceAllText('{father}',newRow[28]);
-    shape.getText().replaceAllText('{father_occupation}',newRow[29]);
-    shape.getText().replaceAllText('{father_phone}',newRow[30]);
-    shape.getText().replaceAllText('{mother}',newRow[31]);
-    shape.getText().replaceAllText('{mother_occupation}',newRow[32]);
-    shape.getText().replaceAllText('{mother_phone}',newRow[33]);
-    shape.getText().replaceAllText('{parent}',newRow[34]);
-    shape.getText().replaceAllText('{parent_occupation}',newRow[35]);
-    shape.getText().replaceAllText('{parent_phone}',newRow[36]);
-    shape.getText().replaceAllText('{relationship}',newRow[37]);
+    shape.getText().replaceAllText('{zipcode1}',newRow[25]);
+    shape.getText().replaceAllText('{gpa}',newRow[26]);
+    shape.getText().replaceAllText('{school_type}',newRow[27]);
+    shape.getText().replaceAllText('{disability}',newRow[28]);
+    shape.getText().replaceAllText('{father}',newRow[29]);
+    shape.getText().replaceAllText('{father_occupation}',newRow[30]);
+    shape.getText().replaceAllText('{father_phone}',newRow[31]);
+    shape.getText().replaceAllText('{mother}',newRow[32]);
+    shape.getText().replaceAllText('{mother_occupation}',newRow[33]);
+    shape.getText().replaceAllText('{mother_phone}',newRow[34]);
+    shape.getText().replaceAllText('{parent}',newRow[35]);
+    shape.getText().replaceAllText('{parent_occupation}',newRow[36]);
+    shape.getText().replaceAllText('{parent_phone}',newRow[37]);
+    shape.getText().replaceAllText('{relationship}',newRow[38]);
+
     });
     
     var text_data = '📣 นักเรียนสมัครเรียนออนไลน์ ระดับชั้น ม.1\n';

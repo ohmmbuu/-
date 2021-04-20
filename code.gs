@@ -1,7 +1,10 @@
 /* โค้ด.gs 
+ระบบรับสมัครนักเรียน พัฒนาโดย นายจิรศักดิ์ จิรสาโรช E-mail: niddeaw.n@gmail.com Tel. & Line : 0806393969
 เครดิตและอ่านรายละเอียด : https://github.com/jamiewilson/form-to-google-sheets
 เครดิตต้นฉบับ original from: http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
-อัพเดทโค้ด 18 เมษายน 2564 เพิ่มระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม
+
+อัพเดทโค้ด 20 เมษายน 2564 เพิ่มระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม
+
 */
 
 var sheetName = 'Sheet1'
@@ -30,29 +33,16 @@ function doPost (e) {
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
 
 /* ----------------------------------------------------------------------------------------------------------------------------------------*/
-/* สร้าง pdf เครดิต ครูสมพงษ์ โพคาศรี email: Spkorat0125@gmail.com Tel : 0956659190 Line : guytrue fb: https://www.facebook.com/spkorat0125 */
+/* ระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม
+/* เครดิต ครูสมพงษ์ โพคาศรี E-mail: Spkorat0125@gmail.com Tel : 0956659190 
+/* Line : guytrue fb: https://www.facebook.com/spkorat0125 */
 
-//============สร้าง pdf==========================
-    var strYear = parseInt(Utilities.formatDate(new Date(), "Asia/Bangkok", "yyyy")) + 543;
-    var strMonth = Utilities.formatDate(new Date(), "Asia/Bangkok", "M");
-    var strDay = Utilities.formatDate(new Date(), "Asia/Bangkok", "d");
-    var strhour=Utilities.formatDate(new Date(), "Asia/Bangkok", "HH");
-    var strMinute=Utilities.formatDate(new Date(), "Asia/Bangkok", "mm");
-    
-    var strMonthCut = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
-    
-    var strMonthThai = strMonthCut[strMonth];  
-    //var DatetimeLine=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+':'+strMinute+' น.';
-    var DatetimeFile=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+'.'+strMinute;
-    
-    
+// สร้าง pdf กำหนดไฟล์แม่แบบและโฟลเดอร์ที่ใช้งาน ---------------------------------------------------------------------------------------------
     var SlideFile = "ID_สไลด์ไฟล์แม่แบบ"; // ID สไลด์ไฟล์แม่แบบ
     const tempFolder = DriveApp.getFolderById("ID_โฟลเดอร์_temp"); // ID โฟลเดอร์ temp
     const pdfFolder = DriveApp.getFolderById("ID_โฟลเดอร์_PDF"); // ID โฟลเดอร์ PDF
             
-            
-//==================ส่วนสำหรับสร้างสำเนาไฟล์ต้นฉบับ=======================
-  //var Slide_TempFile_Copy = DriveApp.getFileById(SlideFile).makeCopy(tempFolder);
+// ส่วนสำหรับสร้างสำเนาไฟล์ต้นฉบับ -----------------------------------------------------------------------------------------------------------
     var Slide_TempFile_Copy = DriveApp.getFileById(SlideFile);              
     var Slide_File_CopyStud = Slide_TempFile_Copy.makeCopy('สมัครเรียน ม.1 '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
     var SlideCopyId = Slide_File_CopyStud.getId();
@@ -61,17 +51,7 @@ function doPost (e) {
     var TemplateSlide = slides[0]; 
     var shapes = TemplateSlide.getShapes();
            
-//=========================ส่วนของการผนวกข้อมูลกับเอกสาร========================================   
-    //var Image_URL1 = 'https://doc.google.com/uc?export=view&id='+ ID_image;
-    //var Image_URL2 = 'https://doc.google.com/uc?export=view&id='+ ID_sign;    
-    //TemplateSlide.insertImage(Image_URL1, 196, 13, 30, 40).bringToFront().getBorder().setWeight(1); // Left  , top ,width , height + Border
-    //TemplateSlide.insertImage(Image_URL2, 164, 182, 37, 26).bringToFront(); // Left  , top ,width , height
-    //var strMonthFull = ["", "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];                
-    //var strBHDYear = parseInt(Utilities.formatDate(newRow[6], "Asia/Bangkok", "yyyy")) + 543;              
-    //var strBHDMonth = Utilities.formatDate(newRow[6], "Asia/Bangkok", "M");
-    //var strBHDDay = Utilities.formatDate(newRow[6], "Asia/Bangkok", "d");
-    //var MonthId = strMonthFull[strBHDMonth];    
- 
+// ส่วนของการผนวกข้อมูลกับเอกสาร (แทนที่ข้อความด้วยข้อมูล) ----------------------------------------------------------------------------------------   
     shapes.forEach(function (shape) {
     shape.getText().replaceAllText('{service}',newRow[1]);
     shape.getText().replaceAllText('{reg_type}',newRow[2]);
@@ -111,33 +91,36 @@ function doPost (e) {
     shape.getText().replaceAllText('{parent_occupation}',newRow[36]);
     shape.getText().replaceAllText('{parent_phone}',newRow[37]);
     shape.getText().replaceAllText('{relationship}',newRow[38]);
-
-    });
-    
-    var text_data = '📣 นักเรียนสมัครเรียนออนไลน์ ระดับชั้น ม.1\n';
-    text_data += 'วันที่ '+DatetimeFile+" น."+'\nชื่อ-นามสกุล : '+newRow[3]+newRow[4]+" "+newRow[5];
-    sendLineNotify(text_data);
-    
-    var pdfName ="สมัครเรียน ม.1 " + newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile
-    
+});
+    var strYear = parseInt(Utilities.formatDate(new Date(), "Asia/Bangkok", "yyyy")) + 543;
+    var strMonth = Utilities.formatDate(new Date(), "Asia/Bangkok", "M");
+    var strDay = Utilities.formatDate(new Date(), "Asia/Bangkok", "d");
+    var strhour=Utilities.formatDate(new Date(), "Asia/Bangkok", "HH");
+    var strMinute=Utilities.formatDate(new Date(), "Asia/Bangkok", "mm");
+    var strMonthCut = ["", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
+    var strMonthThai = strMonthCut[strMonth];  
+    var DatetimeFile=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+'.'+strMinute;
+    var pdfName ="ม.1 " + newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile
     SlideNewCopy.saveAndClose();
     
-    // ======================สร้างไฟล์ pdf========================
-    
-    //var newPDFFile = DriveApp.createFile(Slide_File_CopyStud.getAs("application/pdf")); //ไฟล์ที่ผสานข้อมูลแล้ว
-    //const pdfContentBlob = Slide_File_CopyStud.getAs(MimeType.PDF);
+// สร้างไฟล์ pdf -------------------------------------------------------------------------------------------------------------------------
     const pdfContentBlob = Slide_File_CopyStud.getAs(MimeType.PDF); 
-    var newPDFFile=pdfFolder.createFile(pdfContentBlob).setName(pdfName+".pdf");
-    //tempFolder.removeFile(Slide_TempFile_Copy);
+    var newPDFFile=pdfFolder.createFile(pdfContentBlob).setName(pdfName+".pdf"); 
+    tempFolder.removeFile(Slide_File_CopyStud); // ลบไฟล์สำเนาสไลด์ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
     
-    //======================ส่วนการส่งอีเมล์=========================
+// ส่วนการส่งอีเมล์ --------------------------------------------------------------------------------------------------------------------------
     var email = "xxx@gmail.com"; //ส่งเมลไปที่เจ้าหน้าที่
     MailApp.sendEmail(email, "สมัครเรียนออนไลน์", "จาก โรงเรียนวัดไร่ขิงวิทยา ท่านได้ทำการลงทะเบียนเรียนด้วยระบบออนไลน์ กรุณาตรวจสอบข้อมูล", {attachments: [newPDFFile],});
     
-    //=====================ลบไฟล์สำเนาออก=========================
+// ลบไฟล์สำเนาออก -------------------------------------------------------------------------------------------------------------------------
     // Slide_TempFile_Copy.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
     // newPDFFile.setTrashed(true); // ไฟล์ PDF หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
     // Slide_File_CopyStud.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับที่ถูกแทนที่ด้วยข้อความใหม่ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
+
+// กำหนดตัวแปรให้กับข้อความที่จะส่งไลน์แจ้งเตือน -----------------------------------------------------------------------------------------------------
+    var text_data = '📣 สมัครเรียนระดับชั้น ม.1\n';
+    text_data += 'วันที่ '+DatetimeFile+" น."+'\nชื่อ-นามสกุล : '+newRow[3]+newRow[4]+" "+newRow[5];
+    sendLineNotify(text_data);
 /* ----------------------------------------------------------------------------------------------------------------------------------------*/
  
     return ContentService
@@ -156,10 +139,10 @@ function doPost (e) {
   }
 }
 
-//==============ส่วนฟังก์ชั่นแจ้งเตือนไลน์====================
+// ส่วนฟังก์ชั่นแจ้งเตือนไลน์ --------------------------------------------------------------------------------------------------------------------------
 function sendLineNotify(message) {
 
-    var token = ["กรอก_Token_ID"]; //ใส่ access token
+    var token = ["xxx"]; // ใส่ access token
     var options = {
         "method": "post",
         "payload": "message=" + message,

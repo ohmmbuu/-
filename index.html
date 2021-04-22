@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
+<head><!-- อัพเดทโค้ด 22 เม.ย. 64 -->
+    <title>ระบบรับสมัครนักเรียน | โรงเรียนวัดไร่ขิงวิทยา</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,31 +13,44 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <!-- Google Fonts -->
 	<link href='https://fonts.googleapis.com/css?family=Itim|Kanit|Mali|Mitr|Niramit|Pattaya|Prompt|Questrial|Sarabun|Sriracha' rel='stylesheet' type='text/css'>
+	<!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-	<title>ระบบรับสมัครนักเรียน | โรงเรียนวัดไร่ขิงวิทยา</title>
-<!-- jquery.Thailand.js ***********************************************************************************-->   
+<!-- jquery.Thailand.js *************************************************************************************-->   
     <link rel="stylesheet" href="./jquery.Thailand.js/dist/jquery.Thailand.min.css">
 <!--*******************************************************************************************************-->
 <style type='text/css'>
 .itim {
   font-family: 'Itim', sans-serif;
 }
+.kanit {
+  font-family: 'Kanit', sans-serif;
+}
 .mali {
   font-family: 'Mali', sans-serif;
 }
-.prompt {
-  font-family: 'Prompt', sans-serif;
+.mitr {
+  font-family: 'Mitr', sans-serif;
 }
 .pattaya {
   font-family: 'Pattaya', sans-serif;
 }
+.prompt {
+  font-family: 'Prompt', sans-serif;
+}
 .questrial {
   font-family: 'Questrial', sans-serif;
+}
+.sarabun {
+  font-family: 'Sarabun', sans-serif;
+}
+.sriracha {
+  font-family: 'Sriracha', sans-serif;
 }
 @font-face {
   font-family: 'Sarabun';
 }
-body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต์ในแท็ก Body ที่นี่ (รูปแบบตัวหนังสือในหน้าเว็บ * ยกเว้นที่ระบุใน class) */
+body { font-family: 'Prompt' !important; }
 
 ::placeholder {
   color: peachpuff;
@@ -86,24 +100,6 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
   visibility: visible;
 }
 </style>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-33058582-1', 'auto', {
-            'name': 'Main'
-        });
-        ga('Main.send', 'event', 'jquery.Thailand.js', 'GitHub', 'Visit');
-    </script>
-
 </head>
 <body>
 <!-- Back to top button -->
@@ -112,7 +108,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="#"></a>
-            <h1 class="prompt text-white"><img src="https://drive.google.com/uc?id=1AkAWDZnllmIHVsKFuJEd_tIWgSh5K0pt" width="60px" height="80px">ระบบรับสมัครนักเรียน ม.1 ปีการศึกษา 2564</h1>
+            <h1 class="prompt text-white"><img src="https://drive.google.com/uc?id=1AkAWDZnllmIHVsKFuJEd_tIWgSh5K0pt">ระบบรับสมัครนักเรียน ม.1 ปีการศึกษา 2564</h1>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -120,7 +116,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
             <div class="collapse navbar-collapse" id="navbarColor03">
               <ul class="navbar-nav mr-auto w-100 justify-content-end">
                 <li class="nav-item">
-                <a class="nav-link" href="https://web.facebook.com/RubsamakWRK" target="_blank"><i class="fas fa-home mr-2"></i> เพจงานรับสมัคร</a>
+                <a class="nav-link" href="http://wrk.rf.gd/WebApp/"><i class="fas fa-home mr-2"></i> กลับหน้าหลัก</a>
               </li>
               </ul>
             </div>
@@ -133,16 +129,17 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
      <!-- <center><h1>[ 24 - 28 เมษายน 2564 ]</h1><br></center> -->
 	  <div class="card text-black bg-warning mb-12" style="max-width: 100rem;">
 		  <h2 class="card-header prompt">ประเภททั่วไป 24 - 28 เม.ย. 64, ความสามารถพิเศษ 24 - 27 เม.ย. 64</h2>
-		  <div class="card-body">
-			<h4 class="card-title prompt">1 พ.ค. - สอบคัดเลือก | 5 พ.ค. - ประกาศผลสอบและรายงานตัว | 8 พ.ค. - มอบตัว | 8-11 พ.ค. - ไม่มีที่เรียนยื่นความจำนง</h4>
-			<p class="card-text mali">ผู้จัดทำ : นายจิรศักดิ์ จิรสาโรช งานรับสมัครนักเรียน © 2021</p>
+		  <div class="card-body bg-white">
+			<p class="h5 card-text sarabun">ประเภททั่วไป : 8 พ.ค. - สอบคัดเลือก | 11 พ.ค. - ประกาศผล | 12 พ.ค. - รายงานตัวและมอบตัว | 12-13 พ.ค. - ไม่มีที่เรียนยื่นความจำนง</p>
+			<p class="h5 card-text sarabun">ประเภทความสามารถพิเศษ : 6 พ.ค. - สอบคัดเลือก | 8 พ.ค. - ประกาศผล | 12 พ.ค. - รายงานตัวและมอบตัว | 12-13 พ.ค. - ไม่มีที่เรียนยื่นความจำนง</p>
 		  </div>
 	  </div>
  </div>
 </section>
-<br>
+<br><br>
 <!-- กรอกข้อมูล -->
 <div class="container">
+<!-- เริ่มฟอร์ม ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
   <form id="demo1" onsubmit="handleFormSubmit(this)" class="row g-3 needs-validation" >
 <!-- เขตพื้นที่บริการ -->
 <div class="row">
@@ -157,8 +154,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
           <label class="form-check-label" for="local2">นอกเขต</label>
       </div>
     </div>
-
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
       <p><i class="fas fa-address-card mr-3"></i> สมัครประเภท</p>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="reg_type" id="type1" value="ทั่วไป" checked>
@@ -173,7 +169,6 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
 <!-- ข้อมูลนักเรียน -->
 <div class="row">
 <h3 class="prompt text-black"><i class="fas fa-book-reader mr-3"></i> ข้อมูลนักเรียน</h3>
-<form class="row g-3 needs-validation" novalidate>
   <div class="col-md-1">
     <label for="prefix" class="form-label">คำนำหน้า</label>
     <select class="form-select" name="prefix" id="prefix" required>
@@ -211,16 +206,14 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
     <input type="text" class="form-control" name="religion" id="religion" value="พุทธ" required><br>
   </div>
 </div><!-- ปิด Row -->
-
 <!-- ที่อยู่ -->
 <div class="row">
 <h3 class="prompt text-black"><i class="fas fa-home mr-3"></i> ที่อยู่ปัจจุบัน</h3>
-<form class="row g-3 needs-validation" novalidate>
-  <div class="col-md-1">
+  <div class="col-md-2">
     <label for="house_no" class="form-label">บ้านเลขที่</label>
     <input type="text" class="form-control" name="house_no" id="house_no" required>
   </div>
-  <div class="col-md-1">
+  <div class="col-md-2">
     <label for="village_no" class="form-label">หมู่ที่</label>
     <input type="text" class="form-control" name="village_no" id="village_no" required>
   </div>
@@ -228,14 +221,16 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
     <label for="village" class="form-label">หมู่บ้าน</label>
     <input type="text" class="form-control" name="village" id="village" required>
   </div>
-  <div class="col-md-1">
+  <div class="col-md-2">
     <label for="road" class="form-label">ถนน</label>
     <input type="text" class="form-control" name="road" id="road">
   </div>
-  <div class="col-md-1">
+  <div class="col-md-2">
     <label for="alley" class="form-label">ซอย</label>
     <input type="text" class="form-control" name="alley" id="alley">
   </div>
+</div><!-- ปิด Row -->
+<div class="row">
   <div class="col-md-2">
     <label for="district" class="form-label">แขวง/ตำบล</label>
     <input type="text" class="form-control" name="district" id="district" required>
@@ -244,17 +239,15 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
     <label for="amphoe" class="form-label">เขต/อำเภอ</label>
     <input type="text" class="form-control" name="amphoe" id="amphoe" required>
   </div>
-</div><!-- ปิด Row -->
-<div class="row">
   <div class="col-md-3">
     <label for="province" class="form-label">จังหวัด</label>
     <input type="text" class="form-control" name="province" id="province" required>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     <label for="zipcode" class="form-label">รหัสไปรษณีย์</label>
     <input type="text" class="form-control" name="zipcode" id="zipcode" pattern="[0-9]{5}" required>
   </div>
-  <div class="col">
+  <div class="col-md-3">
     <label for="student_phone" class="form-label">โทรศัพท์มือถือนักเรียน</label>
     <input type="tel" class="form-control" name="student_phone" id="student_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required><br>
   </div>
@@ -262,7 +255,6 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
 <!-- การศึกษา -->
 <div class="row">
 <h3 class="prompt text-black"><i class="fas fa-graduation-cap mr-3"></i> การศึกษา</h3>
-<form class="row g-3 needs-validation" novalidate>
   <div class="col-md-3">
     <label for="school" class="form-label">โรงเรียนเดิม</label>
     <input type="text" class="form-control" name="school" id="school" required>
@@ -300,9 +292,8 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
         <label class="form-check-label" for="school_type2">เอกชน</label>
       </div>
     </div>
-
     <div class="col-md-3">
-      <label for="disability" class="form-label"><i class="fas fa-wheelchair mr-3"></i> ความพิการ</lable>
+      <label for="disability" class="form-label"><i class="fas fa-wheelchair mr-3"></i> ความพิการ</label>
       <select class="form-select" name="disability" id="disability" required><br>
         <option selected disabled value="">เลือก...</option>
         <option>ไม่พิการ</option>
@@ -318,7 +309,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
       </select>
     </div>
 </div><!-- ปิด Row -->
-<form class="row g-3 needs-validation" novalidate>
+<div class="row">
   <!-- บิดา -->
   <div class="col-md-6">
     <label for="father" class="form-label"><i class="fas fa-male mr-3"></i> ชื่อ-สกุลบิดา</label>
@@ -369,6 +360,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
     <center><button class="btn btn-success btn-lg" type="submit" >บันทึกข้อมูล</button></center><br>
   </div>
 </form>
+<!-- ปิดฟอร์ม ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 </div>
 <hr>
 <!-- Footer -->
@@ -378,18 +370,20 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
         <br>
       <div class="row">
         <div class="clo-lg-3 col-md-6">
-          <h4 class="prompt text-white"><i class="fa fa-graduation-cap mr-3"></i> โรงเรียนวัดไร่ขิงวิทยา</h4>
-          <h5 class="prompt text-white">53 หมู่ 2 ต.ไร่ขิง อ.สามพราน จ.นครปฐม 73210</h5>
-          <h6 class="prompt text-white">สำนักงานเขตพื้นที่การศึกษามัธยมศึกษานครปฐม</h6>
+          <h4 class="text-white"><i class="fa fa-graduation-cap mr-3"></i> โรงเรียนวัดไร่ขิงวิทยา</h4>
+          <p class="h5 text-white">53 หมู่ 2 ต.ไร่ขิง อ.สามพราน จ.นครปฐม 73210</p>
+          <p class=" h5 text-white">สำนักงานเขตพื้นที่การศึกษามัธยมศึกษานครปฐม</p>
+		  <p class="text-white mali">ผู้จัดทำ <i class="fa fa-star"></i> นายจิรศักดิ์ จิรสาโรช งานรับสมัครนักเรียน © <script>
+          document.write(new Date().getFullYear())
+          </script> | ติดต่อ 080-6393969</p>
         </div>
-        <!--
+<!--
         <div class="clo-lg-3 col-md-6">
             <h5 class="prompt text-white">ติดต่อโรงเรียน</h5>
             <p class="text-white"><i class="fas fa-envelope mr-3"></i> wrk.ac.th@gmail.com</p>
             <p class="text-white"><i class="fas fa-phone mr-3"></i> Tel. 0-3431-8086-7</p>
             <p class="text-white"><i class="fas fa-fax mr-3"></i> Fax. 0-3432-2755</p>
-        </div>
-        -->
+        </div> -->
       </div>
     </div>
   </div>
@@ -414,7 +408,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
         \******************/ 
         // demo 1: load database from json. if your server is support gzip. we recommended to use this rather than zip.
         // for more info check README.md
-/* สำหรับที่อยู่นักเรียน */
+
         $.Thailand({
             database: './jquery.Thailand.js/database/db.json', 
 
@@ -453,7 +447,7 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
         /******************\
          *     DEMO 1.1     *
         \******************/ 
-/* สำหรับที่อยู่โรงเรียน */
+
         $.Thailand({
             database: './jquery.Thailand.js/database/db.json', 
 
@@ -490,14 +484,14 @@ body { font-family: 'Sarabun' !important; } /* เปลี่ยนฟอนต
 
 <!--  บันทึกข้อมูลไปยัง Google Sheet -->
  <script>
-    const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxx/exec' //** URL เว็บแอพ
-    const form = document.forms['demo1']
-
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-	//.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
-	.then(response =>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx_JfL9ZLIfpk-i3WCJMaCjo3XWVZjyUYYjkgaAtMnlg3D87V8m0raLj21HfCfNG_NYQw/exec' //** URL เว็บแอพ
+            const form = document.forms['demo1']
+          
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                //.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
+                .then(response =>
     // SweetAlert แจ้งเตือนหลังส่งข้อมูลแล้ว ปิดอัตโนมัติ
         Swal.fire({
         position: 'center',

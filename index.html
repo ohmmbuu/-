@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
-<head><!-- อัพเดทโค้ด 22 เม.ย. 64 -->
+<head><!-- อัพเดทโค้ด 23 เม.ย. 64 -->
     <title>ระบบรับสมัครนักเรียน | โรงเรียนวัดไร่ขิงวิทยา</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -144,7 +144,7 @@ body { font-family: 'Prompt' !important; }
 <!-- เขตพื้นที่บริการ -->
 <div class="row">
     <div class="form-group col-md-3">
-      <p><i class="fas fa-map-marked-alt mr-3"></i> เขตพื้นที่บริการ</p>
+      <h4><i class="fas fa-map-marked-alt mr-3"></i> เขตพื้นที่บริการ</h4>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="service" id="local1" value="ในเขต" checked>
         <label class="form-check-label" for="local1">ในเขต</label>
@@ -154,8 +154,8 @@ body { font-family: 'Prompt' !important; }
           <label class="form-check-label" for="local2">นอกเขต</label>
       </div>
     </div>
-    <div class="form-group col-md-6">
-      <p><i class="fas fa-address-card mr-3"></i> สมัครประเภท</p>
+    <div class="form-group col-md-3">
+      <h4><i class="fas fa-address-card mr-3"></i> สมัครประเภท</h4>
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="radio" name="reg_type" id="type1" value="ทั่วไป" checked>
         <label class="form-check-label" for="type1">ทั่วไป</label>
@@ -165,6 +165,12 @@ body { font-family: 'Prompt' !important; }
           <label class="form-check-label" for="type2">ความสามารถพิเศษ</label>
       </div>
     </div>
+<!-- อัพโหลดไฟล์ -->  
+	<div class="col-md-6">
+	<h4><i class="fa fa-camera mr-3"></i> อัปโหลดรูปนักเรียน</h4>
+		<input type="hidden" class="form-control" name="filename" id="filename">
+		<input type="file" class="form-control" name="file" id="uploadfile" required>
+	</div>
 </div><!-- ปิด Row --><hr>
 <!-- ข้อมูลนักเรียน -->
 <div class="row">
@@ -377,13 +383,6 @@ body { font-family: 'Prompt' !important; }
           document.write(new Date().getFullYear())
           </script> | ติดต่อ 080-6393969</p>
         </div>
-<!--
-        <div class="clo-lg-3 col-md-6">
-            <h5 class="prompt text-white">ติดต่อโรงเรียน</h5>
-            <p class="text-white"><i class="fas fa-envelope mr-3"></i> wrk.ac.th@gmail.com</p>
-            <p class="text-white"><i class="fas fa-phone mr-3"></i> Tel. 0-3431-8086-7</p>
-            <p class="text-white"><i class="fas fa-fax mr-3"></i> Fax. 0-3432-2755</p>
-        </div> -->
       </div>
     </div>
   </div>
@@ -481,31 +480,110 @@ body { font-family: 'Prompt' !important; }
             console.log('รหัสไปรษณีย์', this.value);
         });
     </script>
+	
+	
+<script>
+      document.getElementById('submitBtn').addEventListener('click',
+        function(e){
+          google.script.run.withSuccessHandler(onSuccess).uploadFiles(this.parentNode)
+        })
+        
+        function onSuccess(data){
+          document.getElementById('resp').innerHTML = "File Uploaded to the path " +data;
+        }
+       
+</script>
 
-<!--  บันทึกข้อมูลไปยัง Google Sheet -->
- <script>
-const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxx/exec' //** URL เว็บแอพ
-            const form = document.forms['demo1']
-          
-            form.addEventListener('submit', e => {
-              e.preventDefault()
-              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                //.then(response => alert("บันทึกข้อมูลเรียบร้อย..."))
-                .then(response =>
-    // SweetAlert แจ้งเตือนหลังส่งข้อมูลแล้ว ปิดอัตโนมัติ
-        Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'บันทึกข้อมูลแล้ว',
-        showConfirmButton: false,
-        timer: 1500
-      })
-    // ปิด SweetAler
-),document.getElementById("demo1").reset() //ให้รีเซ็ตฟอร์มหลังจากส่งข้อมูล
-                .catch(error => console.error('Error!', error.message))
-            })
-          </script>
-          
+<!-- บันทึกลง Google Sheet -->
+<script>
+const form = document.getElementById('demo1');
+form.addEventListener('submit', e => {
+  setiddoc()
+  e.preventDefault();
+  const file = form.file.files[0];
+  const fr = new FileReader();
+  fr.readAsArrayBuffer(file);
+  fr.onload = f => {
+    
+    const url = "https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec";  // <--- URL เว็บแอพ
+    
+    const qs = new URLSearchParams({filename: form.filename.value || file.name, mimeType: file.type,
+					service: form.service.value,
+					reg_type: form.reg_type.value,
+					prefix: form.prefix.value,
+					name: form.name.value,
+					lastname: form.lastname.value,
+					birthday: form.birthday.value,
+					idcard: form.idcard.value,
+					race: form.race.value,
+					nationality: form.nationality.value,
+					religion: form.religion.value,
+					house_no: form.house_no.value,
+					village_no: form.village_no.value,
+					village: form.village.value,
+					road: form.road.value,
+					alley: form.alley.value,
+					district: form.district.value,
+					amphoe: form.amphoe.value,
+					province: form.province.value,
+					zipcode: form.zipcode.value,
+					student_phone: form.student_phone.value,
+					school: form.school.value,
+					district1: form.district1.value,
+					amphoe1: form.amphoe1.value,
+					province1: form.province1.value,
+					zipcode1: form.zipcode1.value,
+					gpa: form.gpa.value,
+					school_type: form.school_type.value,
+					disability: form.disability.value,
+					father: form.father.value,
+					father_occupation: form.father_occupation.value,
+					father_phone: form.father_phone.value,
+					mother: form.mother.value,
+					mother_occupation: form.mother_occupation.value,
+					mother_phone: form.mother_phone.value,
+					parent: form.parent.value,
+					parent_occupation: form.parent_occupation.value,
+					parent_phone: form.parent_phone.value,
+					relationship: form.relationship.value
+	});
+									
+    fetch(`${url}?${qs}`, {method: "POST", body: JSON.stringify([...new Int8Array(f.target.result)])})
+    .then(res => res.json(),setiddoc(),document.getElementById("demo1").reset())
+			
+    .then(e => console.log(e))
+	// <--- You can retrieve the returned value here.
+    .catch(err => console.log(err));
+  }
+});
+</script>
+
+<!--สร้าง ไอดีใบสมัคร -->
+<script>
+		function setiddoc() {
+		var xx = document.getElementById('idcard').value
+		var phone = document.getElementById('parent_phone').value
+		var re_xx = xx.slice(8, 13);
+		var re_phone = phone.slice(5,10)
+		document.getElementById('filename').value = " ps-"+re_xx+"-"+re_phone;
+		/*-------------------- SweetAlert2 --------------------*/
+		Swal.fire({
+		  title: 'ต้องการบันทึกข้อมูล?',
+		  showDenyButton: true,
+		  showCancelButton: true,
+		  confirmButtonText: `Save`,
+		  denyButtonText: `Don't save`,
+		}).then((result) => {
+		  /* Read more about isConfirmed, isDenied below */
+		  if (result.isConfirmed) {
+			Swal.fire('สมัครเรียบร้อย!', '', 'success')
+		  } else if (result.isDenied) {
+			Swal.fire('ยกเลิกบันทึกข้อมูล', '', 'info')
+		  }
+		})
+		/*-------------------- ปิด SweetAlert2 ------------------*/
+		}
+</script>
 <!-- SweetAlert2 แจ้งเตือนสวยๆ -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
@@ -513,47 +591,47 @@ const scriptURL = 'https://script.google.com/macros/s/xxxxxxxxxx/exec' //** URL 
 <script>
   $(document).ready(function(){
   $('#idcard').on('keyup',function(){
-    if($.trim($(this).val()) != '' && $(this).val().length == 13){
-      id = $(this).val().replace(/-/g,"");
-      var result = Script_checkID(id);
-      if(result === false){
-        $('span.error').removeClass('true').text('เลขบัตรผิด');
-      }else{
-        $('span.error').addClass('true').text('เลขบัตรถูกต้อง');
-      }
-    }else{
-      $('span.error').removeClass('true').text('');
-    
-    }
+	if($.trim($(this).val()) != '' && $(this).val().length == 13){
+	  id = $(this).val().replace(/-/g,"");
+	  var result = Script_checkID(id);
+	  if(result === false){
+		$('span.error').removeClass('true').text('เลขบัตรผิด');
+	  }else{
+		$('span.error').addClass('true').text('เลขบัตรถูกต้อง');
+	  }
+	}else{
+	  $('span.error').removeClass('true').text('');
+	
+	}
   })
 });
 
 function Script_checkID(id){
-    //if(! IsNumeric(id)) return false;
-    //if(id.substring(0,1)== 0) return false;
-    if(id.length != 13) return false;
-    for(i=0, sum=0; i < 12; i++)
-        sum += parseFloat(id.charAt(i))*(13-i);
-    if((11-sum%11)%10!=parseFloat(id.charAt(12))) return false;
-    return true;
+	//if(! IsNumeric(id)) return false;
+	//if(id.substring(0,1)== 0) return false;
+	if(id.length != 13) return false;
+	for(i=0, sum=0; i < 12; i++)
+		sum += parseFloat(id.charAt(i))*(13-i);
+	if((11-sum%11)%10!=parseFloat(id.charAt(12))) return false;
+	return true;
 }
-/* 
+/*
 function IsNumeric(input){
-    var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
-    return (RE.test(input));
+	var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
+	return (RE.test(input));
 }
 */
 </script>
 
 <!-- ปุ่มกลับด้านบน -->
 <script>
-    var btn = $('#button');
+	var btn = $('#button');
 
 $(window).scroll(function() {
   if ($(window).scrollTop() > 300) {
-    btn.addClass('show');
+	btn.addClass('show');
   } else {
-    btn.removeClass('show');
+	btn.removeClass('show');
   }
 });
 
@@ -562,5 +640,6 @@ btn.on('click', function(e) {
   $('html, body').animate({scrollTop:0}, '300');
 });
 </script>
-</body>
+					
+  </body>
 </html>

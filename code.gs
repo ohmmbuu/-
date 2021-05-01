@@ -1,11 +1,12 @@
-/* โค้ด.gs 
-ระบบรับสมัครนักเรียน พัฒนาโดย นายจิรศักดิ์ จิรสาโรช E-mail: niddeaw.n@gmail.com Tel : 0806393969
-เครดิตและอ่านรายละเอียด : https://github.com/jamiewilson/form-to-google-sheets
-เครดิตต้นฉบับ original from: http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
-
-อัพเดทโค้ด 23 เมษายน 2564 เพิ่มระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม , อัพโหลดรูปภาพ เครดิต ครูเก๋ 
-
-*/
+/** โค้ด.gs 
+ * ระบบรับสมัครนักเรียน พัฒนาโดย นายจิรศักดิ์ จิรสาโรช E-mail: niddeaw.n@gmail.com Tel : 0806393969
+ * เครดิตและอ่านรายละเอียด : https://github.com/jamiewilson/form-to-google-sheets
+ * เครดิตต้นฉบับ: http://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
+ * อัพเดทโค้ด 30 เมษายน 2564 เพิ่มระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม , อัพโหลดรูปภาพ เครดิต ครูเก๋ 
+ * ตัวอย่างทำสำเนา
+ * Google Sheet : https://docs.google.com/spreadsheets/d/1Hex42FmIAU3zle9lTGJjcOtfpwgQ0uP_owVySVyUWlc/copy
+ * Google Slide : https://docs.google.com/presentation/d/1Cxu1u0OxgqhDEbJcIUJovP0UE8OQ2VJC6Wul7UjaM8Y/copy
+ */
 
 var sheetName = 'Sheet1'
 var scriptProp = PropertiesService.getScriptProperties()
@@ -20,14 +21,11 @@ function doPost (e) {
   lock.tryLock(10000)
 
   try {
-  	const folderId = "ID_โฟลเดอร์รูปภาพ";  // ID โฟลเดอร์รูปภาพ
+  	const folderId = "ID_โฟลเดอร์รูปภาพ";  // ID_โฟลเดอร์รูปภาพ
 
-	const blob = Utilities.newBlob(JSON.parse(e.postData.contents), e.parameter.mimeType, e.parameter.filename);
-	const file = DriveApp.getFolderById(folderId).createFile(blob);
-	const responseObj = {filename: file.getName(), fileId: file.getId(), fileUrl: file.getUrl()};
-
-	var ss = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1')
-	var ss2 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet2')
+    const blob = Utilities.newBlob(JSON.parse(e.postData.contents), e.parameter.mimeType, e.parameter.filename);
+    const file = DriveApp.getFolderById(folderId).createFile(blob);
+    const responseObj = {filename: file.getName(), fileId: file.getId(), fileUrl: file.getUrl()};
 
     var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'))
     var sheet = doc.getSheetByName('Sheet1') // ระบุชื่อชีต
@@ -41,21 +39,22 @@ function doPost (e) {
 
     sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow])
 
-	sheet.getRange(ss.getLastRow(),41).setValue(responseObj['fileId']) // เพิ่ม URL ของไฟล์ภาพที่ตำแหน่งแถวล่าสุด, คอลัมภ์ที่ **แก้ไข
-	var getim_id = sheet.getRange(ss.getLastRow(),41).getDisplayValue() // แสดงค่า ID ภาพ คอลัมภ์ที่ **แก้ไข
-	var IMAGE_URL_1 = 'https://doc.google.com/uc?export=view&id='+ getim_id;
+	sheet.getRange(sheet.getLastRow(),41).setValue(responseObj['fileId']) // เซ็ตค่า ID ของไฟล์ภาพที่ตำแหน่งแถวล่าสุด, คอลัมภ์ที่ 41 **แก้ไข
+	var getim_id = sheet.getRange(sheet.getLastRow(),41).getDisplayValue() // แสดงค่า ID ของไฟล์ภาพ คอลัมภ์ที่ 41 **แก้ไข
+	var Image_URL = 'https://doc.google.com/uc?export=view&id='+ getim_id; // ลิงค์ URL UC ภาพจากค่า ID ของไฟล์ภาพ
 
-	sheet.getRange(ss.getLastRow(),42).setValue(IMAGE_URL_1) // คอลัมภ์ที่ **แก้ไข
+	sheet.getRange(sheet.getLastRow(),42).setValue(Image_URL) // เซ็ตค่าลิงค์ URL UC ลงคอลัมภ์ที่ 42 **แก้ไข
 	
-/* -------------------------------------------------------------------------------------------------------------------------------*/
-/* ระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม
-/* เครดิต ครูสมพงษ์ โพคาศรี E-mail: Spkorat0125@gmail.com Tel : 0956659190 
-/* Line : guytrue fb: https://www.facebook.com/spkorat0125 */
+/* ---------------------------------------------------------------------------------------------------------------------*/
+/** ระบบสร้างไฟล์ PDF ใบสมัคร , ส่ง อีเมล , แจ้งเตือนทางไลน์กลุ่ม
+ * เครดิต ครูสมพงษ์ โพคาศรี E-mail: Spkorat0125@gmail.com Tel : 0956659190 
+ * Line : guytrue fb: https://www.facebook.com/spkorat0125
+ */
 
 // สร้าง pdf กำหนดไฟล์แม่แบบและโฟลเดอร์ที่ใช้งาน --------------------------------------------------------------------------------
-    var SlideFile = "ID_สไลด์ไฟล์แม่แบบ"; // ID สไลด์ไฟล์แม่แบบ
-    const tempFolder = DriveApp.getFolderById("ID_โฟลเดอร์_temp"); // ID โฟลเดอร์ temp
-    const pdfFolder = DriveApp.getFolderById("ID_โฟลเดอร์_PDF"); // ID โฟลเดอร์ PDF
+    var SlideFile = "ID_สไลด์ไฟล์แม่แบบ"; // ID_สไลด์ไฟล์แม่แบบ
+    const tempFolder = DriveApp.getFolderById("ID_โฟลเดอร์_temp"); // ID_โฟลเดอร์ temp
+    const pdfFolder = DriveApp.getFolderById("ID_โฟลเดอร์_PDF"); // ID_โฟลเดอร์ PDF
             
 // ส่วนสำหรับสร้างสำเนาไฟล์ต้นฉบับ ---------------------------------------------------------------------------------------------
     var strYear = parseInt(Utilities.formatDate(new Date(), "Asia/Bangkok", "yyyy")) + 543;
@@ -67,15 +66,15 @@ function doPost (e) {
     var strMonthThai = strMonthCut[strMonth];  
     var DatetimeFile=strDay+' '+strMonthThai+' '+strYear+ ' เวลา '+strhour+'.'+strMinute;
 
-    var Slide_TempFile_Copy = DriveApp.getFileById(SlideFile);              
-    var Slide_File_CopyStud = Slide_TempFile_Copy.makeCopy('ม.1 '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
-    var SlideCopyId = Slide_File_CopyStud.getId();
-    var SlideNewCopy = SlidesApp.openById(SlideCopyId);
-    var slides = SlideNewCopy.getSlides();
+    var SlideTempFile_Copy = DriveApp.getFileById(SlideFile);              
+    var SlideFile_Copy = SlideTempFile_Copy.makeCopy('ม.1 '+newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile,tempFolder); 
+    var SlideID_Copy = SlideFile_Copy.getId();
+    var SlideNew_Copy = SlidesApp.openById(SlideID_Copy);
+    var slides = SlideNew_Copy.getSlides();
     var TemplateSlide = slides[0]; 
     var shapes = TemplateSlide.getShapes();
 	
-	TemplateSlide.insertImage(IMAGE_URL_1,195,10,50,40).getBorder().setWeight(1) // แทรกรูปภาพ กำหนดตำแหน่งและขนาดภาพ insertImage(imageUrl, left, top, width, height)
+	TemplateSlide.insertImage(Image_URL,195,10,50,40).getBorder().setWeight(1) // แทรกรูปภาพและกำหนดขนาดภาพ insertImage(imageUrl, left, top, width, height)
 	
 // ส่วนของการผนวกข้อมูลกับเอกสาร (แทนที่ข้อความด้วยข้อมูล) ------------------------------------------------------------------   
     shapes.forEach(function (shape) {
@@ -120,35 +119,31 @@ function doPost (e) {
 });
 
     var pdfName ="ม.1 " + newRow[3]+newRow[4]+" "+newRow[5]+" "+DatetimeFile
-    SlideNewCopy.saveAndClose();
+    SlideNew_Copy.saveAndClose();
     
 // สร้างไฟล์ pdf ---------------------------------------------------------------------------------------------------------------
-    const pdfContentBlob = Slide_File_CopyStud.getAs(MimeType.PDF); 
+    const pdfContentBlob = SlideFile_Copy.getAs(MimeType.PDF); 
     var newPDFFile=pdfFolder.createFile(pdfContentBlob).setName(pdfName+".pdf"); 
-    //tempFolder.removeFile(Slide_File_CopyStud); // ลบไฟล์สำเนาสไลด์ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
+    //tempFolder.removeFile(SlideFile_Copy); // ลบไฟล์สำเนาสไลด์ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
     
 // ส่วนการส่งอีเมล์ -------------------------------------------------------------------------------------------------------------
-    var email = "xxx@gmail.com"; //ส่งเมลไปที่เจ้าหน้าที่
-    MailApp.sendEmail(email, "สมัครเรียนออนไลน์", "จาก โรงเรียนวัดไร่ขิงวิทยา ท่านได้ทำการลงทะเบียนเรียนด้วยระบบออนไลน์ กรุณาตรวจสอบข้อมูล", {attachments: [newPDFFile],});
+    //var email = ""; //ส่งเมลไปที่เจ้าหน้าที่
+    //MailApp.sendEmail(email, "สมัครเรียนออนไลน์", "จาก โรงเรียนวัดไร่ขิงวิทยา ท่านได้ทำการลงทะเบียนเรียนด้วยระบบออนไลน์ กรุณาตรวจสอบข้อมูล", {attachments: [newPDFFile],});
     
 // ลบไฟล์สำเนาออก -----------------------------------------------------------------------------------------------------------
-    // Slide_TempFile_Copy.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
+    // SlideTempFile_Copy.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
     // newPDFFile.setTrashed(true); // ไฟล์ PDF หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
-    // Slide_File_CopyStud.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับที่ถูกแทนที่ด้วยข้อความใหม่ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
+    // SlideFile_Copy.setTrashed(true); // ไฟล์ google slide สำเนาต้นฉบับที่ถูกแทนที่ด้วยข้อความใหม่ หากต้องการลบไฟล์ให้ลบเครื่องหมาย // ด้านหน้าออก
 
 // กำหนดตัวแปรให้กับข้อความที่จะส่งไลน์แจ้งเตือน -------------------------------------------------------------------------------
-	var xd = newPDFFile.getUrl()
-	var nationid = newRow[7]
-	var pnone = newRow[36]
-	var re_xx = nationid.slice(8, 13);
-	var re_phone = pnone.slice(5,10)
-	var id_doc = "ps-"+re_xx+"-"+re_phone
-	addlink(xd,id_doc)
+	var Url_pdf = newPDFFile.getUrl()
+	addlink(Url_pdf)
 	var sht = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Sheet2")
-	var shot_url = sht.getRange("b1").getValue()
+	var short_url = sht.getRange("B1").getValue()
 	var text_data = '📣 สมัครเรียนระดับชั้น ม.1\n';
-    text_data += 'วันที่ '+DatetimeFile+" น."+'\nชื่อ-นามสกุล : '+newRow[3]+newRow[4]+" "+newRow[5];
-    sendLineNotify(text_data);
+      text_data += 'วันที่ '+DatetimeFile+" น."+'\nชื่อ-นามสกุล : '+newRow[3]+newRow[4]+" "+newRow[5]+'\n';
+      text_data += 'ดาวน์โหลดใบสมัคร '+short_url;
+      sendLineNotify(text_data);
 /* -----------------------------------------------------------------------------------------------------------------------------*/
  
     return ContentService
@@ -167,10 +162,19 @@ function doPost (e) {
   }
 }
 
+function  addlink(Url_pdf){
+	 var ws = SpreadsheetApp.getActiveSpreadsheet()
+	 var sheet1 = ws.getSheetByName("Sheet1")
+	 var sheet2 = ws.getSheetByName("Sheet2")
+	 var lastrow = sheet1.getLastRow()
+	sheet1.getRange(lastrow,43).setValue(Url_pdf) // ลิงค์ PDF
+	sheet2.getRange("A1").setValue(Url_pdf) // ลิงค์ PDF จาก Sheet2
+}
+
 // ส่วนฟังก์ชั่นแจ้งเตือนไลน์ -------------------------------------------------------------------------------------------------------
 function sendLineNotify(message) {
 
-    var token = ["xxx"]; // ใส่ access token Line
+    var token = [""]; // ใส่ access token Line
     var options = {
         "method": "post",
         "payload": "message=" + message,
@@ -180,75 +184,4 @@ function sendLineNotify(message) {
     };
 
     UrlFetchApp.fetch("https://notify-api.line.me/api/notify", options);
-}
-
-//============================ ส่วนเพิ่มเติม การเพิมลิงค์และเพิ่มเมนู By gukkghu ========================================
-var Route ={};
-    Route.path = function(route,callback){
-    Route[route] = callback;
-    
-    }
-
-function  addlink(xd,id_doc){
-	 var ws = SpreadsheetApp.getActiveSpreadsheet()
-	 var sheet1 = ws.getSheetByName("Sheet1")
-	 var sheet2 = ws.getSheetByName("Sheet2")
-	 var lr = sheet1.getLastRow()
-		Logger.log(lr)
-	sheet1.getRange(lr,40).setValue(xd) // ID ลิงค์ภาพ
-
-	sheet2.getRange("a1").setValue(xd) // ลิงค์ PDF
-}
-
-function getSheetData()  { 
-	var ss= SpreadsheetApp.getActiveSpreadsheet();
-	var dataSheet = ss.getSheetByName('Sheet1'); 
-	var dataRange = dataSheet.getDataRange();
-	var dataValues = dataRange.getDisplayValues();  
- 
-   return dataValues;
-
-}
-function getSheetDatas2()  { 
-	var ss= SpreadsheetApp.getActiveSpreadsheet();
-	var dataSheet = ss.getSheetByName('Sheet2'); 
-	var dataRange = dataSheet.getDataRange();
-	var dataValues1 = dataRange.getDisplayValues(); 
- }
- 
-function doGet(e) {
-  Route.path("index1",loadForm);
-  // Route.path("index",loadForm2);
-
-   if(Route[e.parameters.v]) {
-   return Route[e.parameters.v]();
-   }else {
-   return render("menu");
-   }
-  }
-
-//ส่วนย่อยเรียกการทำงานหน้า page
-function loadForm(){
-	return render("index1");
-}
-
-function getUrl(){
-	var url =ScriptApp.getService().getUrl();
-	return url;
-	Logger.log(url)
-}
-
-function include(filename) {
-return HtmlService.createHtmlOutputFromFile(filename).getContent();
-}
-
-function render(file, argsObject){
-var tmp = HtmlService.createTemplateFromFile(file);
-	if(argsObject) {
-var keys = Object.keys (argsObject);
-	keys.forEach(function(key){
-	tmp[key] = argsObject[key]; 
-   }); 
- } 
-return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode. ALLOWALL);
 }

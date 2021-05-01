@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="th">
-<head><!-- อัพเดทโค้ด 24 เม.ย. 64 -->
+<head>
+
+<!-- อัพเดทโค้ด 30 เม.ย. 64 -->
+
     <title>ระบบรับสมัครนักเรียน | โรงเรียนวัดไร่ขิงวิทยา</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,11 +18,12 @@
 	<link href='https://fonts.googleapis.com/css?family=Itim|Kanit|Mali|Mitr|Niramit|Pattaya|Prompt|Questrial|Sarabun|Sriracha' rel='stylesheet' type='text/css'>
 	<!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-<!-- jquery.Thailand.js *************************************************************************************-->   
+	<!-- jquery.Thailand.js -->   
     <link rel="stylesheet" href="./jquery.Thailand.js/dist/jquery.Thailand.min.css">
-<!--*******************************************************************************************************-->
-<style type='text/css'>
+	<!-- CSS Files 
+    <link href="style.css" rel="stylesheet" /> -->
+	<!-- CSS Files -->
+	<style type='text/css'>
 .itim {
   font-family: 'Itim', sans-serif;
 }
@@ -108,7 +112,7 @@ body { font-family: 'Prompt' !important; }
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="#"></a>
-            <h1 class="prompt text-white"><img src="https://drive.google.com/uc?id=1AkAWDZnllmIHVsKFuJEd_tIWgSh5K0pt" style="width:800px;height:80px;">ระบบรับสมัครนักเรียน ม.1 ปีการศึกษา 2564</h1>
+            <h1 class="prompt text-white"><img src="https://drive.google.com/uc?id=1AkAWDZnllmIHVsKFuJEd_tIWgSh5K0pt">ระบบรับสมัครนักเรียน ม.1 ปีการศึกษา 2564</h1>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -116,7 +120,7 @@ body { font-family: 'Prompt' !important; }
             <div class="collapse navbar-collapse" id="navbarColor03">
               <ul class="navbar-nav mr-auto w-100 justify-content-end">
                 <li class="nav-item">
-                <a class="nav-link" href="http://wrk.rf.gd/WebApp/"><i class="fas fa-home mr-2"></i> กลับหน้าหลัก</a>
+                <a class="nav-link" href="./"><i class="fas fa-home mr-2"></i> กลับหน้าหลัก</a>
               </li>
               </ul>
             </div>
@@ -130,242 +134,241 @@ body { font-family: 'Prompt' !important; }
 	  <div class="card text-black bg-warning mb-12" style="max-width: 100rem;">
 		  <h2 class="card-header prompt">ประเภททั่วไป 24 - 28 เม.ย. 64, ความสามารถพิเศษ 24 - 27 เม.ย. 64</h2>
 		  <div class="card-body bg-white">
-			<p class="h5 card-text sarabun">ประเภททั่วไป : 8 พ.ค. - สอบคัดเลือก | 11 พ.ค. - ประกาศผล | 12 พ.ค. - รายงานตัวและมอบตัว | 12-13 พ.ค. - ไม่มีที่เรียนยื่นความจำนง</p>
-			<p class="h5 card-text sarabun">ประเภทความสามารถพิเศษ : 6 พ.ค. - สอบคัดเลือก | 8 พ.ค. - ประกาศผล | 12 พ.ค. - รายงานตัวและมอบตัว | 12-13 พ.ค. - ไม่มีที่เรียนยื่นความจำนง</p>
+			<p class="h5 card-text sarabun">ประเภททั่วไป : สอบคัดเลือก 22 พ.ค. | ประกาศผลภายใน 24 พ.ค. | รายงานตัวและมอบตัว 29 พ.ค. | ไม่มีที่เรียนยื่นความจำนง 25-27 พ.ค.</p>
+			<p class="h5 card-text sarabun">ประเภทความสามารถพิเศษ : สอบคัดเลือก 19 พ.ค. | ประกาศผลภายใน 24 พ.ค. | รายงานตัวและมอบตัว 29 พ.ค. | ไม่มีที่เรียนยื่นความจำนง 25-27 พ.ค.</p>
 		  </div>
 	  </div>
  </div>
 </section>
 <br><br>
-<!-- กรอกข้อมูล -->
 <div class="container">
 <!-- เริ่มฟอร์ม ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-  <form id="demo1" onsubmit="handleFormSubmit(this)" class="row g-3 needs-validation" >
-<!-- เขตพื้นที่บริการ -->
-<div class="row">
-    <div class="form-group col-md-3">
-      <h4><i class="fas fa-map-marked-alt mr-3"></i> เขตพื้นที่บริการ</h4>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="service" id="local1" value="ในเขต" checked>
-        <label class="form-check-label" for="local1">ในเขต</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="service" id="local2" value="นอกเขต">
-          <label class="form-check-label" for="local2">นอกเขต</label>
-      </div>
-    </div>
-    <div class="form-group col-md-3">
-      <h4><i class="fas fa-address-card mr-3"></i> สมัครประเภท</h4>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="reg_type" id="type1" value="ทั่วไป" checked>
-        <label class="form-check-label" for="type1">ทั่วไป</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="reg_type" id="type2" value="ความสามารถพิเศษ">
-          <label class="form-check-label" for="type2">ความสามารถพิเศษ</label>
-      </div>
-    </div>
-<!-- อัพโหลดไฟล์ -->  
-	<div class="col-md-6">
-	<h4><i class="fa fa-camera mr-3"></i> อัปโหลดรูปนักเรียน</h4>
-		<input type="hidden" class="form-control" name="filename" id="filename">
-		<input type="file" class="form-control" name="file" id="uploadfile" required>
-	</div>
-</div><!-- ปิด Row --><hr>
+	<form class="row g-3 needs-validation" id="demo1" name="demo1" onsubmit="handleFormSubmit(this)">
+		<div class="row">
+			<div class="col-md-3">
+			  <h4><i class="fas fa-map-marked-alt mr-3"></i> เขตพื้นที่บริการ</h4>
+			  <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="service" id="local1" value="ในเขต" checked>
+				<label class="form-check-label" for="local1">ในเขต</label>
+			  </div>
+			  <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="service" id="local2" value="นอกเขต">
+				  <label class="form-check-label" for="local2">นอกเขต</label>
+			  </div>
+			</div>
+			<div class="col-md-3">
+			  <h4><i class="fas fa-address-card mr-3"></i> สมัครประเภท</h4>
+			  <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="reg_type" id="type1" value="ทั่วไป" checked>
+				<label class="form-check-label" for="type1">ทั่วไป</label>
+			  </div>
+			  <div class="form-check form-check-inline">
+				<input class="form-check-input" type="radio" name="reg_type" id="type2" value="ความสามารถพิเศษ">
+				  <label class="form-check-label" for="type2">ความสามารถพิเศษ</label>
+			  </div>
+			</div>
+<!-- อัพโหลดไฟล์ -->
+			<div class="col-md-4">
+			<h4><i class="fa fa-camera mr-3"></i> อัปโหลดรูปนักเรียน</h4>
+				<input type="hidden" class="form-control" name="filename" id="filename">
+				<input type="file" class="form-control" name="file" id="uploadfile" required>
+			</div>
+		</div><!-- ปิด row-->
+			
+<!-- เริ่มแถวใหม่ แต่ละแถวให้ได้ col 12 คอลัมภ์ --> 
 <!-- ข้อมูลนักเรียน -->
-<div class="row">
-<h3 class="prompt text-black"><i class="fas fa-book-reader mr-3"></i> ข้อมูลนักเรียน</h3>
-  <div class="col-md-1">
-    <label for="prefix" class="form-label">คำนำหน้า</label>
-    <select class="form-select" name="prefix" id="prefix" required>
-      <option selected disabled value="">เลือก...</option>
-      <option>เด็กชาย</option>
-      <option>เด็กหญิง</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <label for="name" class="form-label">ชื่อ</label>
-    <input type="text" class="form-control" name="name" id="name" required>
-  </div>
-  <div class="col-md-2">
-    <label for="lastname" class="form-label">นามสกุล</label>
-    <input type="text" class="form-control" name="lastname" id="lastname" required>
-  </div>
-  <div class="col-md-2">
-    <label for="birthday" class="form-label">เกิดวันที่</label>
-    <input type="date" class="form-control" name="birthday" id="birthday" required>
-  </div>
-  <div class="col-md-2">
-    <label for="idcard" class="form-label">เลขบัตรประชาชน</label>
-    <input type="text" class="form-control" name="idcard" id="idcard" placeholder="กรอกเลข 13 หลัก" maxlength="13" required><span class="error"></span>  
-  </div>
-  <div class="col-md-1">
-    <label for="race" class="form-label">เชื้อชาติ</label>
-    <input type="text" class="form-control" name="race" id="race" value="ไทย" required>
-  </div>
-    <div class="col-md-1">
-    <label for="nationality" class="form-label">สัญชาติ</label>
-    <input type="text" class="form-control" name="nationality" id="nationality" value="ไทย" required>
-  </div>
-    <div class="col-md-1">
-    <label for="religion" class="form-label">ศาสนา</label>
-    <input type="text" class="form-control" name="religion" id="religion" value="พุทธ" required><br>
-  </div>
-</div><!-- ปิด Row -->
-<!-- ที่อยู่ -->
-<div class="row">
-<h3 class="prompt text-black"><i class="fas fa-home mr-3"></i> ที่อยู่ปัจจุบัน</h3>
-  <div class="col-md-2">
-    <label for="house_no" class="form-label">บ้านเลขที่</label>
-    <input type="text" class="form-control" name="house_no" id="house_no" required>
-  </div>
-  <div class="col-md-2">
-    <label for="village_no" class="form-label">หมู่ที่</label>
-    <input type="text" class="form-control" name="village_no" id="village_no" required>
-  </div>
-  <div class="col-md-4">
-    <label for="village" class="form-label">หมู่บ้าน</label>
-    <input type="text" class="form-control" name="village" id="village" required>
-  </div>
-  <div class="col-md-2">
-    <label for="road" class="form-label">ถนน</label>
-    <input type="text" class="form-control" name="road" id="road">
-  </div>
-  <div class="col-md-2">
-    <label for="alley" class="form-label">ซอย</label>
-    <input type="text" class="form-control" name="alley" id="alley">
-  </div>
-</div><!-- ปิด Row -->
-<div class="row">
-  <div class="col-md-2">
-    <label for="district" class="form-label">แขวง/ตำบล</label>
-    <input type="text" class="form-control" name="district" id="district" required>
-  </div>
-  <div class="col-md-2">
-    <label for="amphoe" class="form-label">เขต/อำเภอ</label>
-    <input type="text" class="form-control" name="amphoe" id="amphoe" required>
-  </div>
-  <div class="col-md-3">
-    <label for="province" class="form-label">จังหวัด</label>
-    <input type="text" class="form-control" name="province" id="province" required>
-  </div>
-  <div class="col-md-2">
-    <label for="zipcode" class="form-label">รหัสไปรษณีย์</label>
-    <input type="text" class="form-control" name="zipcode" id="zipcode" pattern="[0-9]{5}" required>
-  </div>
-  <div class="col-md-3">
-    <label for="student_phone" class="form-label">โทรศัพท์มือถือนักเรียน</label>
-    <input type="tel" class="form-control" name="student_phone" id="student_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required><br>
-  </div>
-</div><!-- ปิด Row -->
-<!-- การศึกษา -->
-<div class="row">
-<h3 class="prompt text-black"><i class="fas fa-graduation-cap mr-3"></i> การศึกษา</h3>
-  <div class="col-md-3">
-    <label for="school" class="form-label">โรงเรียนเดิม</label>
-    <input type="text" class="form-control" name="school" id="school" required>
-  </div>
-  <div class="col-md-2">
-    <label for="district1" class="form-label">แขวง/ตำบล</label>
-    <input type="text" class="form-control" name="district1" id="district1" required>
-  </div>
-  <div class="col-md-2">
-    <label for="amphoe1" class="form-label">เขต/อำเภอ</label>
-    <input type="text" class="form-control" name="amphoe1" id="amphoe1" required>
-  </div>
-  <div class="col-md-2">
-    <label for="province1" class="form-label">จังหวัด</label>
-    <input type="text" class="form-control" name="province1" id="province1" required>
-  </div>
-  <div class="col-md-2">
-    <label for="zipcode1" class="form-label">รหัสไปรษณีย์</label>
-    <input type="text" class="form-control" name="zipcode1" id="zipcode1" required>
-  </div>
-  <div class="col-md-1">
-    <label for="gpa" class="form-label">เกรดเฉลี่ย</label>
-    <input type="number" class="form-control" name="gpa" id="gpa" value="" min="0.00" max="4.00" step="0.01" placeholder="4.00" required><br>
-  </div>
-</div><!-- ปิด Row -->
-<div class="row">
-    <div class="form-group col-md-3">
-      <p><i class="fas fa-school mr-3"></i> ประเภทของโรงเรียนเดิม</p>
-      <div class="form-check form-check-inline">
-        <input type="radio" class="form-check-input" id="school_type1" name="school_type" value="รัฐบาล" checked>
-        <label class="form-check-label" for="school_type1">รัฐบาล</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input type="radio" class="form-check-input" id="school_type2" name="school_type" value="เอกชน">
-        <label class="form-check-label" for="school_type2">เอกชน</label>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="disability" class="form-label"><i class="fas fa-wheelchair mr-3"></i> ความพิการ</label>
-      <select class="form-select" name="disability" id="disability" required><br>
-        <option selected disabled value="">เลือก...</option>
-        <option>ไม่พิการ</option>
-        <option>บกพร่องทางการเห็น</option>
-        <option>บกพร่องทางการได้ยิน</option>
-        <option>บกพร่องทางสติปัญญา</option>
-        <option>บกพร่องทางร่างกายและสุขภาพ</option>
-        <option>มีปัญหาทางการเรียนรู้</option>
-        <option>บกพร่องทางการพูดและภาษา</option>
-        <option>บกพร่องทางพฤติกรรมและอารมณ์</option>
-        <option>บุคคลออทิสติก</option>
-        <option>บุคคลพิการซ้อน</option>
-      </select>
-    </div>
-</div><!-- ปิด Row -->
-<div class="row">
-  <!-- บิดา -->
-  <div class="col-md-6">
-    <label for="father" class="form-label"><i class="fas fa-male mr-3"></i> ชื่อ-สกุลบิดา</label>
-    <input type="text" class="form-control" name="father" id="father" required>
-  </div>
-  <div class="col-md-3">
-    <label for="father_occupation" class="form-label"><i class="fas fa-user-tie mr-3"></i> อาชีพบิดา</label>
-    <input type="text" class="form-control" name="father_occupation" id="father_occupation" required>
-  </div>
-  <div class="col-md-3">
-    <label for="father_phone" class="form-label"><i class="fas fa-phone-alt mr-3"></i> โทรศัพท์มือถือบิดา</label>
-    <input type="tel" class="form-control" name="father_phone" id="father_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required>
-  </div>
-  <!-- มารดา -->
-  <div class="col-md-6">
-    <label for="mother" class="form-label"><i class="fas fa-female mr-3"></i> ชื่อ-สกุลมารดา</label>
-    <input type="text" class="form-control" name="mother" id="mother" required>
-  </div>
-  <div class="col-md-3">
-    <label for="mother_occupation" class="form-label"><i class="fas fa-user-tie mr-3"></i> อาชีพมารดา</label>
-    <input type="text" class="form-control" name="mother_occupation" id="mother_occupation" required>
-  </div>
-  <div class="col-md-3">
-    <label for="mother_phone" class="form-label"><i class="fas fa-phone-alt mr-3"></i> โทรศัพท์มือถือมารดา</label>
-    <input type="tel" class="form-control" name="mother_phone" id="mother_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required>
-  </div>
-  <!-- ผู้ปกครอง -->
-  <div class="col-md-4">
-    <label for="parent" class="form-label"><i class="fas fa-user mr-3"></i> ชื่อ-สกุลผู้ปกครอง</label>
-    <input type="text" class="form-control" name="parent" id="parent" required>
-  </div>
-  <div class="col-md-2">
-    <label for="parent_occupation" class="form-label"><i class="fas fa-user-tie mr-3"></i> อาชีพผู้ปกครอง</label>
-    <input type="text" class="form-control" name="parent_occupation" id="parent_occupation" required>
-  </div>
-  <div class="col-md-3">
-    <label for="parent_phone" class="form-label"><i class="fas fa-phone-alt mr-3"></i> โทรศัพท์มือถือผู้ปกครอง</label>
-    <input type="tel" class="form-control" name="parent_phone" id="parent_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required>
-  </div>
-    <div class="col-md-3">
-    <label for="relationship" class="form-label"><i class="fas fa-user-plus mr-3"></i> ความเกี่ยวข้องกับนักเรียน</label>
-    <input type="text" class="form-control" name="relationship" id="relationship" required>
-  </div>
-</div><!-- ปิด Row -->
-<br>
-<!-- บันทึกข้อมูล -->  
-  <div class="col-12">
-    <center><button class="btn btn-success btn-lg" type="submit" >บันทึกข้อมูล</button></center><br>
-  </div>
-</form>
+		<span style="font-size: 2em; color: green;"><i class="fas fa-user"></i> ข้อมูลนักเรียน</span>
+		<div class="col-md-1">
+		<label for="prefix" class="form-label">คำนำหน้า</label>
+			<select class="form-select" name="prefix" id="prefix" required>
+			  <option selected disabled value="">เลือก...</option>
+			  <option>เด็กชาย</option>
+			  <option>เด็กหญิง</option>
+			</select>
+		</div>
+		<div class="col-md-2">
+			<label for="name" class="form-label">ชื่อ</label>
+			<input type="text" class="form-control" name="name" id="name" required>
+		</div>
+		<div class="col-md-2">
+			<label for="lastname" class="form-label">นามสกุล</label>
+			<input type="text" class="form-control" name="lastname" id="lastname" required>
+		</div>
+		<div class="col-md-2">
+			<label for="birthday" class="form-label">เกิดวันที่ (ปี ค.ศ.)</label>
+			<input type="date" class="form-control" name="birthday" id="birthday" required>
+		</div>
+		<div class="col-md-2">
+			<label for="idcard" class="form-label">เลขบัตรประชาชน</label>
+			<input type="text" class="form-control" name="idcard" id="idcard" placeholder="กรอกเลข 13 หลัก" maxlength="13" required><span class="error"></span>  
+		</div>
+		<div class="col-md-1">
+			<label for="race" class="form-label">เชื้อชาติ</label>
+			<input type="text" class="form-control" name="race" id="race" value="ไทย" required>
+		</div>
+		<div class="col-md-1">
+			<label for="nationality" class="form-label">สัญชาติ</label>
+			<input type="text" class="form-control" name="nationality" id="nationality" value="ไทย" required>
+		</div>
+		<div class="col-md-1">
+			<label for="religion" class="form-label">ศาสนา</label>
+			<input type="text" class="form-control" name="religion" id="religion" value="พุทธ" required><br>
+		</div>
+		<!-- เริ่มแถวใหม่ แต่ละแถวให้ได้ col 12 คอลัมภ์ --> 
+		<!-- ที่อยู่ -->
+		<span style="font-size: 2em; color: Dodgerblue;"><i class="fas fa-map-marker-alt"></i> ที่อยู่ปัจจุบัน</span>
+		<div class="col-md-2">
+			<label for="house_no" class="form-label">บ้านเลขที่</label>
+			<input type="text" class="form-control" name="house_no" id="house_no" required>
+		</div>
+		<div class="col-md-2">
+			<label for="village_no" class="form-label">หมู่ที่</label>
+			<input type="text" class="form-control" name="village_no" id="village_no" required>
+		</div>
+		<div class="col-md-4">
+			<label for="village" class="form-label">หมู่บ้าน</label>
+			<input type="text" class="form-control" name="village" id="village" required>
+		</div>
+		<div class="col-md-2">
+			<label for="road" class="form-label">ถนน</label>
+			<input type="text" class="form-control" name="road" id="road">
+		</div>
+		<div class="col-md-2">
+			<label for="alley" class="form-label">ซอย</label>
+			<input type="text" class="form-control" name="alley" id="alley">
+		</div>
+		<!-- เริ่มแถวใหม่ แต่ละแถวให้ได้ col 12 คอลัมภ์ --> 
+		<div class="col-md-2">
+			<label for="district" class="form-label">แขวง/ตำบล</label>
+			<input type="text" class="form-control" name="district" id="district" required>
+		</div>
+		<div class="col-md-2">
+			<label for="amphoe" class="form-label">เขต/อำเภอ</label>
+			<input type="text" class="form-control" name="amphoe" id="amphoe" required>
+		</div>
+		<div class="col-md-3">
+			<label for="province" class="form-label">จังหวัด</label>
+			<input type="text" class="form-control" name="province" id="province" required>
+		</div>
+		<div class="col-md-2">
+			<label for="zipcode" class="form-label">รหัสไปรษณีย์</label>
+			<input type="text" class="form-control" name="zipcode" id="zipcode" pattern="[0-9]{5}" required>
+		</div>
+		<div class="col-md-3">
+			<label for="student_phone" class="form-label">โทรศัพท์มือถือนักเรียน</label>
+			<input type="tel" class="form-control" name="student_phone" id="student_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required><br>
+		</div>
+
+		<!-- เริ่มแถวใหม่ แต่ละแถวให้ได้ col 12 คอลัมภ์ --> 
+		<!-- การศึกษา -->
+		<span style="font-size: 2em; color: blue;"><i class="fas fa-graduation-cap"></i> การศึกษา</span>
+		<div class="col-md-3">
+			<label for="school" class="form-label">โรงเรียนเดิม</label>
+			<input type="text" class="form-control" name="school" id="school" required>
+		</div>
+		<div class="col-md-2">
+			<label for="district1" class="form-label">แขวง/ตำบล</label>
+			<input type="text" class="form-control" name="district1" id="district1" required>
+		</div>
+		<div class="col-md-2">
+			<label for="amphoe1" class="form-label">เขต/อำเภอ</label>
+			<input type="text" class="form-control" name="amphoe1" id="amphoe1" required>
+		</div>
+		<div class="col-md-2">
+			<label for="province1" class="form-label">จังหวัด</label>
+			<input type="text" class="form-control" name="province1" id="province1" required>
+		</div>
+		<div class="col-md-2">
+			<label for="zipcode1" class="form-label">รหัสไปรษณีย์</label>
+			<input type="text" class="form-control" name="zipcode1" id="zipcode1" required>
+		</div>
+		<div class="col-md-1">
+			<label for="gpa" class="form-label">เกรดเฉลี่ย</label>
+			<input type="number" class="form-control" name="gpa" id="gpa" value="" min="0.00" max="4.00" step="0.01" placeholder="4.00" required>
+		</div>
+<!-- เริ่มแถวใหม่ แต่ละแถวให้ได้ col 12 คอลัมภ์ -->
+<!-- ประเภทของโรงเรียนเดิม -->
+		<div class="row">
+		<div class="form-group col-md-3">
+		  <p><i class="fas fa-school mr-3"></i> ประเภทของโรงเรียนเดิม</p>
+		  <div class="form-check form-check-inline">
+			<input type="radio" class="form-check-input" id="school_type1" name="school_type" value="รัฐบาล" checked>
+			<label class="form-check-label" for="school_type1">รัฐบาล</label>
+		  </div>
+		  <div class="form-check form-check-inline">
+			<input type="radio" class="form-check-input" id="school_type2" name="school_type" value="เอกชน">
+			<label class="form-check-label" for="school_type2">เอกชน</label>
+		  </div>
+		</div>
+		<div class="col-md-3">
+		  <label for="disability" class="form-label"><i class="fas fa-wheelchair mr-3"></i> ความพิการ</label>
+		  <select class="form-select" name="disability" id="disability" required><br>
+			<option selected disabled value="">เลือก...</option>
+			<option>ไม่พิการ</option>
+			<option>บกพร่องทางการเห็น</option>
+			<option>บกพร่องทางการได้ยิน</option>
+			<option>บกพร่องทางสติปัญญา</option>
+			<option>บกพร่องทางร่างกายและสุขภาพ</option>
+			<option>มีปัญหาทางการเรียนรู้</option>
+			<option>บกพร่องทางการพูดและภาษา</option>
+			<option>บกพร่องทางพฤติกรรมและอารมณ์</option>
+			<option>บุคคลออทิสติก</option>
+			<option>บุคคลพิการซ้อน</option>
+		  </select>
+		</div>
+		</div><!-- ปิด row -->
+		<!-- เริ่มแถวใหม่ แต่ละแถวให้ได้ col 12 คอลัมภ์ --> 
+		<!-- บิดา -->
+		<span style="font-size: 2em; color: DeepPink;"><i class="fas fa-users"></i> ข้อมูลผู้ปกครอง</span>
+		<div class="col-md-6">
+			<label for="father" class="form-label"><i class="fas fa-male mr-3"></i> ชื่อ-สกุลบิดา</label>
+			<input type="text" class="form-control" name="father" id="father" required>
+		</div>
+		<div class="col-md-3">
+			<label for="father_occupation" class="form-label"><i class="fas fa-user-tie mr-3"></i> อาชีพบิดา</label>
+			<input type="text" class="form-control" name="father_occupation" id="father_occupation" required>
+		</div>
+		<div class="col-md-3">
+			<label for="father_phone" class="form-label"><i class="fas fa-phone-alt mr-3"></i> โทรศัพท์มือถือบิดา</label>
+			<input type="tel" class="form-control" name="father_phone" id="father_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required>
+		</div>
+		<!-- มารดา -->
+		<div class="col-md-6">
+			<label for="mother" class="form-label"><i class="fas fa-female mr-3"></i> ชื่อ-สกุลมารดา</label>
+			<input type="text" class="form-control" name="mother" id="mother" required>
+		</div>
+		<div class="col-md-3">
+			<label for="mother_occupation" class="form-label"><i class="fas fa-user-tie mr-3"></i> อาชีพมารดา</label>
+			<input type="text" class="form-control" name="mother_occupation" id="mother_occupation" required>
+		</div>
+		<div class="col-md-3">
+			<label for="mother_phone" class="form-label"><i class="fas fa-phone-alt mr-3"></i> โทรศัพท์มือถือมารดา</label>
+			<input type="tel" class="form-control" name="mother_phone" id="mother_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required>
+		</div>
+		<!-- ผู้ปกครอง -->
+		<div class="col-md-4">
+			<label for="parent" class="form-label"><i class="fas fa-user mr-3"></i> ชื่อ-สกุลผู้ปกครอง</label>
+			<input type="text" class="form-control" name="parent" id="parent" required>
+		</div>
+		<div class="col-md-2">
+			<label for="parent_occupation" class="form-label"><i class="fas fa-user-tie mr-3"></i> อาชีพผู้ปกครอง</label>
+			<input type="text" class="form-control" name="parent_occupation" id="parent_occupation" required>
+		</div>
+		<div class="col-md-3">
+			<label for="parent_phone" class="form-label"><i class="fas fa-phone-alt mr-3"></i> โทรศัพท์มือถือผู้ปกครอง</label>
+			<input type="tel" class="form-control" name="parent_phone" id="parent_phone" maxlength="10" pattern="[0-9]{10}" placeholder="0xxxxxxxxx" required>
+		</div>
+		<div class="col-md-3">
+			<label for="relationship" class="form-label"><i class="fas fa-user-plus mr-3"></i> ความเกี่ยวข้องกับนักเรียน</label>
+			<input type="text" class="form-control" name="relationship" id="relationship" required>
+		</div>
+		</div><!-- ปิด Row -->
+<!-- บันทึกข้อมูล -->
+		<br>
+		<div class="col-12">
+		<center><button class="btn btn-success btn-lg" type="submit" >บันทึกข้อมูล</button></center><br>
+		</div>
+	</form>
 <!-- ปิดฟอร์ม ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 </div>
 <hr>
@@ -442,7 +445,7 @@ body { font-family: 'Prompt' !important; }
         });
     </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
         /******************\
          *     DEMO 1.1     *
         \******************/ 
@@ -481,17 +484,16 @@ body { font-family: 'Prompt' !important; }
         });
     </script>
 	
-	
+<!--อัพโหลดไฟล์ -->
 <script>
-      document.getElementById('submitBtn').addEventListener('click',
-        function(e){
-          google.script.run.withSuccessHandler(onSuccess).uploadFiles(this.parentNode)
-        })
-        
-        function onSuccess(data){
-          document.getElementById('resp').innerHTML = "File Uploaded to the path " +data;
-        }
-       
+  document.getElementById('submitBtn').addEventListener('click',
+	function(e){
+	  google.script.run.withSuccessHandler(onSuccess).uploadFiles(this.parentNode)
+	})
+	
+	function onSuccess(data){
+	  document.getElementById('resp').innerHTML = "File Uploaded to the path " +data;
+	}
 </script>
 
 <!-- บันทึกลง Google Sheet -->
@@ -505,8 +507,8 @@ form.addEventListener('submit', e => {
   fr.readAsArrayBuffer(file);
   fr.onload = f => {
     
-    const url = "https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec";  // <--- URL เว็บแอพ
-    
+    const url = "https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXX/exec";  // <--- URL เว็บแอพ
+	    
     const qs = new URLSearchParams({filename: form.filename.value || file.name, mimeType: file.type,
 					service: form.service.value,
 					reg_type: form.reg_type.value,
@@ -558,32 +560,23 @@ form.addEventListener('submit', e => {
 });
 </script>
 
-<!--สร้าง ไอดีใบสมัคร -->
+<!--สร้างชื่อไฟล์ภาพ -->
 <script>
-		function setiddoc() {
-		var xx = document.getElementById('idcard').value
-		var phone = document.getElementById('parent_phone').value
-		var re_xx = xx.slice(8, 13);
-		var re_phone = phone.slice(5,10)
-		document.getElementById('filename').value = " ps-"+re_xx+"-"+re_phone;
-		/*-------------------- SweetAlert2 --------------------*/
-		Swal.fire({
-		  title: 'ต้องการบันทึกข้อมูล?',
-		  showDenyButton: true,
-		  showCancelButton: true,
-		  confirmButtonText: `Save`,
-		  denyButtonText: `Don't save`,
-		}).then((result) => {
-		  /* Read more about isConfirmed, isDenied below */
-		  if (result.isConfirmed) {
-			Swal.fire('สมัครเรียบร้อย!', '', 'success')
-		  } else if (result.isDenied) {
-			Swal.fire('ยกเลิกบันทึกข้อมูล', '', 'info')
-		  }
-		})
-		/*-------------------- ปิด SweetAlert2 ------------------*/
-		}
-</script>
+	function setiddoc() {
+	var xname = document.getElementById('name').value
+	var xlastname = document.getElementById('lastname').value
+	document.getElementById('filename').value = "Image_"+xname+" "+xlastname;
+	/*-------------------- SweetAlert2 --------------------*/
+	Swal.fire({
+		position: 'center',
+		icon: 'success',
+		title: 'สมัครเรียบร้อย',
+		showConfirmButton: false,
+		timer: 1500
+	})
+	/*-------------------- ปิด SweetAlert2 ------------------*/
+}
+</script> -->
 <!-- SweetAlert2 แจ้งเตือนสวยๆ -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
@@ -627,19 +620,18 @@ function IsNumeric(input){
 <script>
 	var btn = $('#button');
 
-$(window).scroll(function() {
-  if ($(window).scrollTop() > 300) {
-	btn.addClass('show');
-  } else {
-	btn.removeClass('show');
-  }
-});
+	$(window).scroll(function() {
+	  if ($(window).scrollTop() > 300) {
+		btn.addClass('show');
+	  } else {
+		btn.removeClass('show');
+	  }
+	});
 
-btn.on('click', function(e) {
-  e.preventDefault();
-  $('html, body').animate({scrollTop:0}, '300');
-});
+	btn.on('click', function(e) {
+	  e.preventDefault();
+	  $('html, body').animate({scrollTop:0}, '300');
+	});
 </script>
-					
   </body>
 </html>
